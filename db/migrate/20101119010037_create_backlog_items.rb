@@ -3,6 +3,7 @@ class CreateBacklogItems < ActiveRecord::Migration
     create_table :backlog_items do |t|
       t.string :title
       t.integer :points
+      t.integer :priority
       t.references :backlog_theme
       
       t.timestamps

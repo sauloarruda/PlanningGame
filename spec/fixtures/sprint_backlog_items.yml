@@ -1,0 +1,26 @@
+jera_rsa_1_visualizar_perfil_da_empresa:
+    sprint: jera_rsa_1
+    backlog_item: visualizar_perfil_da_empresa
+    priority: 2
+    
+jera_rsa_1_buscar_empresa_de_arquitetura:
+    sprint: jera_rsa_1
+    backlog_item: buscar_empresa_de_arquitetura
+    priority: 3
+    
+jera_rsa_1_preencher_dados_gerais_do_arquiteto:
+    sprint: jera_rsa_1
+    backlog_item: preencher_dados_gerais_do_arquiteto
+    priority: 4
+    
+jera_rsa_1_preencher_curriculo_do_arquiteto:
+    sprint: jera_rsa_1
+    backlog_item: preencher_curriculo_do_arquiteto
+    priority: 5
+    
+jera_rsa_1_construir_show_room_de_projetos_do_arquiteto:
+    sprint: jera_rsa_1
+    backlog_item: construir_show_room_de_projetos_do_arquiteto
+    priority: 6
+
+    

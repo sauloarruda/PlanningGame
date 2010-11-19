@@ -3,6 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.datetime :end_date
       t.references :team
+      t.references :backlog
 
       t.timestamps
     end

@@ -1,5 +1,5 @@
 jera_rsa_1:
     number: 1
-    planned_velocity: 20
     project: jera_rsa
+    planned_velocity: 16
     

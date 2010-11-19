@@ -1,3 +1,7 @@
 arquiteto:
     title: Arquiteto
     backlog: rede_social_arquitetos
+
+empresas_arquitetura:
+    title: Empresas de Arquitetura
+    backlog: rede_social_arquitetos

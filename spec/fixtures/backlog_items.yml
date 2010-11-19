@@ -1,14 +1,64 @@
 visualizar_perfil_do_arquiteto:
     title: Visualizar Perfil do Arquiteto
     points: 2
+    priority: 0
     backlog_theme: arquiteto
     
 buscar_arquiteto:
     title: Buscar Arquiteto
     points: 3
+    priority: 1
     backlog_theme: arquiteto
     
 preencher_dados_gerais_do_arquiteto:
     title: Preencher Dados Gerais do Arquiteto
     points: 3
+    priority: 2
     backlog_theme: arquiteto    
+    
+preencher_curriculo_do_arquiteto:
+    title: Preencher Currículo do Arquiteto
+    points: 3
+    priority: 3
+    backlog_theme: arquiteto    
+    
+construir_show_room_de_projetos_do_arquiteto:
+    title: Construir Show Room de Projetos do Arquiteto
+    points: 5
+    priority: 4
+    backlog_theme: arquiteto    
+
+
+
+visualizar_perfil_da_empresa:
+    title: Visualizar Perfil da Empresa
+    points: 2
+    priority: 0
+    backlog_theme: empresas_arquitetura
+
+buscar_empresa_de_arquitetura:
+    title: Buscar Empresa de Arquitetura
+    points: 3
+    priority: 1
+    backlog_theme: empresas_arquitetura
+
+preencher_dados_gerais_da_empresa:
+    title: Preencher Dados Gerais da Empresa
+    points: 3
+    priority: 2
+    backlog_theme: empresas_arquitetura
+
+construir_show_room_de_projetos_da_empresa:
+    title: Construir Show Room de Projetos da Empresa
+    points: 1
+    priority: 3
+    backlog_theme: empresas_arquitetura
+
+
+
+
+
+
+
+
+
