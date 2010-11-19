@@ -1,25 +1,25 @@
 jera_rsa_1:
     number: 1
     project: jera_rsa
-    story_points: 16
+    planned_story_points: 16
 
 alfa_rsa_1:
     number: 1
     project: alfa_rsa
-    defects_points: 0
-    story_points: 16
+    planned_defect_points: 0
+    planned_story_points: 16
     real_velocity: 18
     generated_defects: 1
-    technical_debt: 1
+    generated_technical_debt: 1
     
 alfa_rsa_2:
     number: 2
     project: alfa_rsa
-    defects_points: 0
-    story_points: 18
+    planned_defect_points: 0
+    planned_story_points: 18
     real_velocity: 16
     generated_defects: 2
-    technical_debt: 2
+    generated_technical_debt: 2
 
 alfa_rsa_3:
     number: 3

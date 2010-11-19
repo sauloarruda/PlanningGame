@@ -23,3 +23,35 @@ jera_rsa_1_construir_show_room_de_projetos_do_arquiteto:
     sprint: jera_rsa_1
     backlog_item: construir_show_room_de_projetos_do_arquiteto
     priority: 6
+
+
+# alfa - rsa - sprint 1
+alfa_rsa_1_visualizar_perfil_da_empresa:
+    sprint: alfa_rsa_1
+    backlog_item: visualizar_perfil_da_empresa
+    priority: 0
+    done: true
+
+alfa_rsa_1_buscar_empresa_de_arquitetura:
+    sprint: alfa_rsa_1
+    backlog_item: buscar_empresa_de_arquitetura
+    priority: 1
+    done: true
+    
+alfa_rsa_1_preencher_dados_gerais_do_arquiteto:
+    sprint: alfa_rsa_1
+    backlog_item: preencher_dados_gerais_do_arquiteto
+    priority: 2
+    done: true
+
+alfa_rsa_1_preencher_curriculo_do_arquiteto:
+    sprint: alfa_rsa_1
+    backlog_item: preencher_curriculo_do_arquiteto
+    priority: 3
+    done: true
+
+alfa_rsa_1_construir_show_room_de_projetos_do_arquiteto:
+    sprint: alfa_rsa_1
+    backlog_item: construir_show_room_de_projetos_do_arquiteto
+    priority: 4
+    done: true

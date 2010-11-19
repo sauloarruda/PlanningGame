@@ -5,7 +5,7 @@ class CreateSprintBacklogItems < ActiveRecord::Migration
       t.references :backlog_item
       
       t.integer :priority
-      t.boolean :done
+      t.boolean :done, :default => false
       
       t.timestamps
     end
