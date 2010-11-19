@@ -1,0 +1,14 @@
+visualizar_perfil_do_arquiteto:
+    title: Visualizar Perfil do Arquiteto
+    points: 2
+    backlog_theme: arquiteto
+    
+buscar_arquiteto:
+    title: Buscar Arquiteto
+    points: 3
+    backlog_theme: arquiteto
+    
+preencher_dados_gerais_do_arquiteto:
+    title: Preencher Dados Gerais do Arquiteto
+    points: 3
+    backlog_theme: arquiteto    

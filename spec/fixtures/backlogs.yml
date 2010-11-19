@@ -1,0 +1,4 @@
+rede_social_arquitetos:
+    name: Rede Social de Arquitetos
+    initial_velocity: 20
+    max_sprints: 8
