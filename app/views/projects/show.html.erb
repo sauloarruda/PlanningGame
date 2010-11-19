@@ -1,0 +1,69 @@
+<style type="text/css" media="screen">
+	.vertical {
+		-webkit-transform: rotate(-90deg); 
+		-moz-transform: rotate(-90deg);
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+</style>
+<h1><%= @project.backlog.name %></h1>
+<table border="1">
+	<tr>
+		<th>&nbsp;</th>
+		<th><%= t('sprints') %></th>
+		<% (1).upto(@project.backlog.max_sprints) do |i| -%>
+		<th>#<%= i %></th>
+		<% end -%>
+		<th><%= t('total') %></th>
+		<th><%= t('average') %></th>
+	</tr>
+	<tr>
+		<td rowspan="6" class="vertical"><%= t('informations') %></td>
+		<td><%= t('initial-velocity') %></td>
+		<td rowspan="2"><%= @project.backlog.initial_velocity %></td>
+		<% (1).upto(@project.backlog.max_sprints-1) do |i| -%>
+		<td rowspan="2"><% if @project.sprints.length > i -%><% @total_velocity += @project.sprints[i].real_velocity %><%= @project.sprints[i].real_velocity  %><% end -%></td>
+		<% end -%>
+		<td rowspan="2"><%= @total_velocity %></td>
+		<td rowspan="2"><%= avg(@total_velocity, @project.sprints.length) %></td>
+	</tr>
+	<tr>
+		<td class="tooltip"><%= t('initial-velocity-tooltip') %></td>
+	</tr>
+	<tr>
+		<td><%= t('pendant-defects') %></td>
+		<td rowspan="2">0</td>
+		<% (1).upto(@project.backlog.max_sprints-1) do |i| -%>
+		<td rowspan="2"><% if @project.sprints.length > i -%><% @total_defects += @project.sprints[i].defects %><%= @project.sprints[i].defects %><% end -%></td>
+		<% end -%>
+		<td rowspan="2"><%= @total_defects %></td>
+		<td rowspan="2"><%= avg(@total_defects, @project.sprints.length) %></td>
+	</tr>
+	<tr>
+		<td><%= t('pendant-defects-tooltip') %></td>
+	</tr>
+	<tr>
+		<td><%= t('technical-debt') %></td>
+		<td rowspan="2">0</td>
+		<% (1).upto(@project.backlog.max_sprints-1) do |i| -%>
+		<td rowspan="2"><% if @project.sprints.length > i -%><% @technical_debt += @project.sprints[i].technical_debt %><%= @project.sprints[i].technical_debt %><% end -%></td>
+		<% end -%>
+		<td rowspan="2"><%= @technical_debt %></td>
+		<td rowspan="2"><%= avg(@technical_debt, @project.sprints.length) %></td>
+	</tr>
+	<tr>
+		<td><%= t('technical-debt-tooltip') %></td>
+	</tr>
+	<tr>
+		<td rowspan="6" class="vertical"><%= t('planned') %></td>
+		<td><%= t('defects-points') %></td>
+		<td rowspan="2">0</td>
+		<% (1).upto(@project.backlog.max_sprints-1) do |i| -%>
+		<td rowspan="2"><% if @project.sprints.length > i -%><% @technical_debt += @project.sprints[i].technical_debt %><%= @project.sprints[i].technical_debt %><% end -%></td>
+		<% end -%>
+		<td rowspan="2"><%= @technical_debt %></td>
+		<td rowspan="2"><%= avg(@technical_debt, @project.sprints.length) %></td>
+	</tr>
+	<tr>
+		<td class="tooltip"><%= t('defects-points-tooltip') %></td>
+	</tr>
+</table>

@@ -1,0 +1,8 @@
+<h1>New Project</h1>
+<% form_for @project do |f| -%>
+<p>
+	<%= f.label :backlog %>
+	<%= f.select :backlog_id, @backlogs %>
+</p>
+<p><%= f.submit "Create", :disable_with => 'Creating...' %>
+<% end -%>

@@ -18,15 +18,15 @@ describe Sprint do
     @sprint.backlog_items << SprintBacklogItem.new({
       :backlog_item => backlog_items(:buscar_arquiteto), :priority => 1 })
     @sprint.save!
-    @sprint.planned_velocity.should == 21
+    @sprint.story_points.should == 21
   end
   
   it "should execute planning" do
     # TODO write cucumber spec for calculation rules
     @sprint.execute!
-    @sprint.planned_velocity.should == 16
+    @sprint.story_points.should == 16
     @sprint.real_velocity.should == 18
-    @sprint.defects.should == 2
+    @sprint.generated_gitdefects.should == 2
     @sprint.technical_debt.should == 1
   end
 end

@@ -1,3 +1,4 @@
+# arquiteto
 visualizar_perfil_do_arquiteto:
     title: Visualizar Perfil do Arquiteto
     points: 2
@@ -29,7 +30,7 @@ construir_show_room_de_projetos_do_arquiteto:
     backlog_theme: arquiteto    
 
 
-
+# empresas arquitetura
 visualizar_perfil_da_empresa:
     title: Visualizar Perfil da Empresa
     points: 2
@@ -53,12 +54,29 @@ construir_show_room_de_projetos_da_empresa:
     points: 1
     priority: 3
     backlog_theme: empresas_arquitetura
+    
 
+# fornecedores
+visualizar_perfil_do_fornecedor:
+    title: Visualizar Perfil do Fornecedor
+    points: 2
+    priority: 0
+    backlog_theme: fornecedores
 
+preencher_dados_gerais_do_fornecedor:
+    title: Preencher Dados Gerais do Fornecedor
+    points: 2
+    priority: 1
+    backlog_theme: fornecedores
 
+buscar_fornecedor:
+    title: Buscar Fornecedor
+    points: 2
+    priority: 2
+    backlog_theme: fornecedores
 
-
-
-
-
-
+cadastrar_produtos_do_fornecedor:
+    title: Cadastrar Produtos do Fornecedor
+    points: 5
+    priority: 3
+    backlog_theme: fornecedores

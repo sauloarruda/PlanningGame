@@ -5,15 +5,15 @@ class Sprint < ActiveRecord::Base
   before_save :calculate_planned_velocity
   
   def calculate_planned_velocity
-    self.planned_velocity = 0
+    self.story_points = 0
     self.backlog_items.each do |item|
-      self.planned_velocity += item.backlog_item.points
+      self.story_points += item.backlog_item.points
     end
   end
   
   def execute!
     self.real_velocity = 18
-    self.defects = 2
+    self.generated_defects = 2
     self.technical_debt = 1
     self.save!
   end

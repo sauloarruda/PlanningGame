@@ -1,3 +1,4 @@
+# jera - rsa - sprint 1
 jera_rsa_1_visualizar_perfil_da_empresa:
     sprint: jera_rsa_1
     backlog_item: visualizar_perfil_da_empresa
@@ -22,5 +23,3 @@ jera_rsa_1_construir_show_room_de_projetos_do_arquiteto:
     sprint: jera_rsa_1
     backlog_item: construir_show_room_de_projetos_do_arquiteto
     priority: 6
-
-    
