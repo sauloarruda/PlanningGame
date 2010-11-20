@@ -4,10 +4,11 @@ class CreateSprints < ActiveRecord::Migration
       t.integer :number
 
       t.integer :real_velocity
-      t.integer :generated_defects
+      t.integer :generated_defect_points
       t.integer :generated_technical_debt
+      t.integer :accumulated_defect_points
 
-      t.integer :planned_defect_points, :default => 0
+      t.integer :planned_defect_points
       t.integer :planned_story_points, :default => 0
 
       t.references :project

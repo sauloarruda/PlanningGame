@@ -55,3 +55,52 @@ alfa_rsa_1_construir_show_room_de_projetos_do_arquiteto:
     backlog_item: construir_show_room_de_projetos_do_arquiteto
     priority: 4
     done: true
+    
+# alfa - rsa - sprint 2
+
+alfa_rsa_2_visualizar_perfil_do_arquiteto:
+    sprint: alfa_rsa_2
+    backlog_item: visualizar_perfil_do_arquiteto
+    priority: 0
+    done: true
+
+alfa_rsa_2_buscar_arquiteto:
+    sprint: alfa_rsa_2
+    backlog_item: buscar_arquiteto 
+    priority: 1
+    done: true
+
+alfa_rsa_2_preencher_dados_gerais_do_arquiteto:
+    sprint: alfa_rsa_2
+    backlog_item: preencher_dados_gerais_do_arquiteto
+    priority: 2
+    done: true
+
+alfa_rsa_2_construir_show_room_de_projetos_da_empresa:
+    sprint: alfa_rsa_2
+    backlog_item: construir_show_room_de_projetos_da_empresa
+    priority: 3
+    done: true
+
+alfa_rsa_2_visualizar_perfil_do_fornecedor:
+    sprint: alfa_rsa_2
+    backlog_item: visualizar_perfil_do_fornecedor
+    priority: 4
+    done: true
+
+alfa_rsa_2_preencher_dados_gerais_do_fornecedor:
+    sprint: alfa_rsa_2
+    backlog_item: preencher_dados_gerais_do_fornecedor
+    priority: 5
+    done: true
+
+alfa_rsa_2_cadastrar_produtos_do_fornecedor:
+    sprint: alfa_rsa_2
+    backlog_item: 
+    priority: 6
+    done: false
+
+
+
+
+

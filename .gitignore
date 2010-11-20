@@ -20,3 +20,6 @@ db/*.sqlite3
 dispatch.*
 .htaccess
 db/schema.rb
+.bundle/
+.rspec
+tmp/

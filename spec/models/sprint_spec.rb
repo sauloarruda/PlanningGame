@@ -27,7 +27,7 @@ describe Sprint do
       @sprint.execute!
       @sprint.planned_story_points.should eql(16)
       @sprint.real_velocity.should eql(18)
-      @sprint.generated_defects.should eql(2)
+      @sprint.generated_defect_points.should eql(2)
       @sprint.generated_technical_debt.should eql(1)
     end
   end
@@ -37,14 +37,15 @@ describe Sprint do
       @sprint = Sprint.find_by_id(sprints(:alfa_rsa_1))
     end
     
+    it "should get backlog's initial velocity" do
+      @sprint.initial_velocity.should eql(backlogs(:rede_social_arquitetos).initial_velocity)
+    end
+    
     it "should calculate real story points" do
-      @sprint = Sprint.find_by_id(sprints(:alfa_rsa_1))
       @sprint.real_story_points.should eql(16)
     end
   
     it "should calculate positive balance" do
-      pending "todo this test"
-      @sprint = Sprint.find_by_id(sprints(:alfa_rsa_1))
       @sprint.balance.should eql(2)
     end
     
@@ -63,8 +64,24 @@ describe Sprint do
       @sprint.previous.should eql(sprints(:alfa_rsa_1))
     end
     
+    it "should get initial velocity of previous sprint" do
+      @sprint.initial_velocity.should eql(18)
+    end
+    
     it "should calculate planned velocity" do
       @sprint.planned_velocity.should eql(19)
+    end
+
+    it "should calculate real story points" do
+      @sprint.real_story_points.should eql(13)
+    end
+
+    it "should calculate actual technical debt" do
+      @sprint.actual_technical_debt.should eql(1)
+    end
+    
+    it "should calculate negative balance" do
+      @sprint.balance.should eql(-5)
     end
     
     
