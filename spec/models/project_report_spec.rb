@@ -30,6 +30,40 @@ describe ProjectReport do
   it "should get planned defect points field" do
     assert_field("planned_defect_points", [0, 0, nil, nil, nil, nil, nil, nil], 0)
   end
+
+  it "should get planned story points field" do
+    assert_field("planned_story_points", [16, 18, nil, nil, nil, nil, nil, nil], 34)
+  end
+
+  it "should get planned velocity field" do
+    assert_field("planned_velocity", [16, 19, nil, nil, nil, nil, nil, nil], 35)
+  end
+
+  it "should get real velocity field" do
+    assert_field("real_velocity", [18, 16, nil, nil, nil, nil, nil, nil], 34)
+  end
+
+  it "should get functional velocity field" do
+    assert_field("functional_velocity", [18, 15, nil, nil, nil, nil, nil, nil], 33)
+  end
+
+  it "should get real story points field" do
+    assert_field("real_story_points", [16, 13, nil, nil, nil, nil, nil, nil], 29)
+  end
+  
+  it "should get balance field" do
+    assert_field("balance", [2, -5, nil, nil, nil, nil, nil, nil], -3)
+  end
+
+  it "should get generated defect points field" do
+    assert_field("generated_defect_points", [1, 2, nil, nil, nil, nil, nil, nil], 3)
+  end
+  
+  it "should get total defects field" do
+    assert_field("total_defects", [1, 3, nil, nil, nil, nil, nil, nil], 4)
+  end
+  
+  
   
   def assert_field(field, expected_values, expected_total)
     values = []

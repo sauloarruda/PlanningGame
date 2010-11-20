@@ -52,6 +52,14 @@ describe Sprint do
     it "should not find previous sprint" do
       @sprint.previous.should be_nil
     end
+    
+    it "should calculate functional velocity" do
+      @sprint.functional_velocity.should eql(18)
+    end
+    
+    it "should calculate total defects" do
+      @sprint.total_defects.should eql(1)
+    end
   
   end
 
@@ -84,6 +92,13 @@ describe Sprint do
       @sprint.balance.should eql(-5)
     end
     
+    it "should calculate functional velocity" do
+      @sprint.functional_velocity.should eql(15)
+    end
+    
+    it "should calculate total defects" do
+      @sprint.total_defects.should eql(3)
+    end
     
   end
   

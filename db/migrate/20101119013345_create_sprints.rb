@@ -9,7 +9,7 @@ class CreateSprints < ActiveRecord::Migration
       t.integer :accumulated_defect_points
 
       t.integer :planned_defect_points
-      t.integer :planned_story_points, :default => 0
+      t.integer :planned_story_points
 
       t.references :project
 
