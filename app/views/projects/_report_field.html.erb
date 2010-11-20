@@ -1,0 +1,11 @@
+<tr>
+	<td><%= t(field) %></td>
+	<% @project.sprints.each do |sprint| -%>
+	<td rowspan="2"><%= eval("sprint.#{field}") %></td>
+	<% end -%>
+	<td rowspan="2"><%= eval("@project.total_#{field}") %></td>
+	<td rowspan="2"><%= eval("avg(@project.total_#{field}, @project.sprints.length)") %></td>
+</tr>
+<tr>
+	<td class="tooltip"><%= t(field + "_tooltip") %></td>
+</tr>

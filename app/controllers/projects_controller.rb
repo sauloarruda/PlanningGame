@@ -13,10 +13,7 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    @project = Project.find_by_id params[:id]
-    @total_velocity = @project.backlog.initial_velocity
-    @total_defects = 0
-    @technical_debt = 0
+    @project = ProjectReport.new params[:id]
   end
   
 end
