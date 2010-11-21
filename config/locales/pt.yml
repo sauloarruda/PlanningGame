@@ -1,0 +1,15 @@
+pt:
+  separator: "," # fraction separator
+  sprints: Sprints
+  total: Total
+  average: Média
+  informations: Informações
+  initial-velocity: V0. Velocidade Inicial
+  initial-velocity-tooltip: Velocidade do último Sprint
+  pendant-defects: B0. Defeitos Pendentes
+  pendant-defects-tooltip: Defeitos do último Sprint
+  technical-debt: D0. Débito Técnico
+  technical-debt-tooltip: Débito técnico acumulado
+  planned: Planejado
+  defects-points: BP. Pontos de Defeitos
+  defects-points-tooltip: Indique a quantidade de defeitos

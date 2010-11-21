@@ -1,7 +1,14 @@
 arquiteto:
     title: Arquiteto
     backlog: rede_social_arquitetos
+    priority: 100
 
 empresas_arquitetura:
     title: Empresas de Arquitetura
     backlog: rede_social_arquitetos
+    priority: 95
+    
+fornecedores:
+    title: Fornecedores
+    backlog: rede_social_arquitetos
+    priority: 90

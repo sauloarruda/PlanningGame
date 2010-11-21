@@ -1,0 +1,22 @@
+<h1>New Project</h1>
+<% form_for @project do |f| -%>
+<% if @project.errors.any? -%>
+  <div id="errorExplanation">
+    <h2><%= t('errors') %></h2>
+    <ul>
+    <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end -%>
+<p>
+	<%= f.label :team %>
+	<%= f.select :team_id, @teams %>
+</p>
+<p>
+	<%= f.label :backlog %>
+	<%= f.select :backlog_id, @backlogs %>
+</p>
+<p><%= f.submit "Create", :disable_with => 'Creating...' %>
+<% end -%>

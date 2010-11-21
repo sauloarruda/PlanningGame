@@ -1,0 +1,24 @@
+<style type="text/css" media="screen">
+	.vertical {
+		-webkit-transform: rotate(-90deg); 
+		-moz-transform: rotate(-90deg);
+		filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+	}
+</style>
+<h1><%= @project.name %></h1>
+<table border="1">
+	<tr>
+		<th><%= t('sprints') %></th>
+		<% (1).upto(@project.sprints.length) do |i| -%>
+		<th>#<%= i %></th>
+		<% end -%>
+		<th><%= t('total') %></th>
+		<th><%= t('average') %></th>
+	</tr>
+	
+	<% ProjectReport::EXPOSED_FIELDS.each do |field| -%>
+	<%= render :partial => "report_field", :locals => { :field => field.to_s } %>
+	<% end %>
+
+
+</table>

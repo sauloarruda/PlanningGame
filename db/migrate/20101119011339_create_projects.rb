@@ -7,6 +7,9 @@ class CreateProjects < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :projects, :team_id
+    add_index :projects, :backlog_id
   end
 
   def self.down

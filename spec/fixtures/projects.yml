@@ -1,2 +1,7 @@
 jera_rsa:
     team: jera
+    backlog: rede_social_arquitetos
+    
+alfa_rsa:
+    team: alfa
+    backlog: rede_social_arquitetos
