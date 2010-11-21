@@ -11,5 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe ProjectsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "avg" do
+    it "should divide and format numbers" do
+      helper.avg(5, 2).should eql("2,50")
+    end
+  end
+  
 end

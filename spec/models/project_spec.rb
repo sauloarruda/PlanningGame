@@ -21,4 +21,10 @@ describe Project do
     sprint = @project.sprints[0]
     sprint.number.should == 1
   end
+  
+  it "should require backlog and team" do
+    project = Project.create
+    project.should have(1).error_on(:backlog)
+    project.should have(1).error_on(:team)
+  end
 end

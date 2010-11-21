@@ -1,3 +1,4 @@
+# represents a project's sprint
 class Sprint < ActiveRecord::Base
   belongs_to :project
   has_many :backlog_items, :class_name => "SprintBacklogItem", :foreign_key => "sprint_id"
@@ -9,18 +10,19 @@ class Sprint < ActiveRecord::Base
     if self.number == 1
       self.project.backlog.initial_velocity 
     else
-      (self.previous.nil?) ? nil : self.previous.real_velocity 
+      self.previous.real_velocity rescue nil
     end
   end
   
   # sum of realized story points from done sprint backlog items
   def real_story_points
     # if there are not done itens, returns null
-    if self.backlog_items.length == 0
+    backlog_items = self.backlog_items
+    if backlog_items.length == 0
       nil
     else
       points = 0
-      self.backlog_items.each do |item|
+      backlog_items.each do |item|
         points += item.backlog_item.points if item.done?
       end
       points
@@ -44,7 +46,7 @@ class Sprint < ActiveRecord::Base
     if self.number == 1
       0
     else
-      (previous.nil?) ? nil : previous.generated_technical_debt
+      previous.generated_technical_debt rescue nil
     end
   end
   
@@ -55,25 +57,22 @@ class Sprint < ActiveRecord::Base
 
   # previous sprint or null if first, search sprint by number
   def previous
-    index = nil
-    self.project.sprints.each do |s|
-       if (s.number == self.number)
-         index = s.number - 1
-         break
-       end
-    end
-    self.project.sprints[index-1] unless index.nil? or index == 0
+    sprints = self.project.sprints
+    index = Sprint::sprint_index(self.number, sprints)
+    sprints[index-1] unless index.nil? or index == 0
   end
-  
+    
   # the diference between planned and real, if positive, there was unused points, if negative, the
   # planned was higher than real and not all backlog itens where done
   def balance 
-    if (self.real_velocity.nil?)
+    planned_velocity = self.planned_velocity
+    real_velocity = self.real_velocity
+    if (real_velocity.nil?)
       nil
-    elsif (self.real_velocity > self.planned_velocity)
-      self.real_velocity - self.planned_velocity
+    elsif (real_velocity > planned_velocity)
+      real_velocity - planned_velocity
     else
-      self.real_story_points + self.planned_defect_points + self.actual_technical_debt - self.planned_velocity
+      self.real_story_points + self.planned_defect_points + self.actual_technical_debt - planned_velocity
     end
   end
   
@@ -90,6 +89,17 @@ class Sprint < ActiveRecord::Base
       self.backlog_items.each do |item|
         self.planned_story_points += item.backlog_item.points
       end
+    end
+    
+    def Sprint::sprint_index(number, sprints)
+      index = nil
+      sprints.each do |sprint|
+        if (number == sprint.number)
+          index = number - 1
+          break
+        end
+      end
+      index
     end
   
 end

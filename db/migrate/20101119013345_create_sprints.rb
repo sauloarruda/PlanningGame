@@ -15,6 +15,8 @@ class CreateSprints < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :sprints, :project_id
   end
 
   def self.down

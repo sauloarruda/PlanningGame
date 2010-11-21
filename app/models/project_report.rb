@@ -1,3 +1,4 @@
+# delegator for project in project report that builds all totals and correct columns and rows based on a project
 class ProjectReport
   
   attr_reader :project, :sprints
@@ -27,8 +28,8 @@ private
   
   def create_sprints
     @sprints = []
-    0.upto(@project.backlog.max_sprints-1) do |n|
-      sprint_report = SprintReport.new(self, n)
+    0.upto(@project.backlog.max_sprints-1) do |number|
+      sprint_report = SprintReport.new(self, number)
       @sprints << calculate_total(sprint_report)
     end
   end
@@ -42,14 +43,16 @@ private
 
 end
 
+# delegator for sprint in project report
 class SprintReport
-  def initialize(project_report, n)
+  def initialize(project_report, number)
     @project_report = project_report
     project = project_report.project
-    if (project.sprints.length > n)
-      @sprint = project.sprints[n]
+    sprints = project.sprints
+    if (sprints.length > number)
+      @sprint = sprints[number]
     else
-      @sprint = Sprint.new :project => project, :number => n + 1
+      @sprint = Sprint.new :project => project, :number => number + 1
     end  
   end
   

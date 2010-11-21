@@ -9,6 +9,9 @@ class CreateSprintBacklogItems < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :sprint_backlog_items, :sprint_id
+    add_index :sprint_backlog_items, :backlog_item_id
   end
 
   def self.down

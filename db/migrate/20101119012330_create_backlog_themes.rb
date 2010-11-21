@@ -7,6 +7,8 @@ class CreateBacklogThemes < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :backlog_themes, :backlog_id
   end
 
   def self.down
