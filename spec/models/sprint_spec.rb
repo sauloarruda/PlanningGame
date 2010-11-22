@@ -60,6 +60,10 @@ describe Sprint do
     it "should calculate total defects" do
       @sprint.total_defects.should eql(1)
     end
+    
+    it "should calculate avaiable backlog points" do
+      @sprint.avaiable_backlog_points.should eql(22)
+    end
   
   end
 

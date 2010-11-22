@@ -76,6 +76,12 @@ class Sprint < ActiveRecord::Base
     end
   end
   
+  def avaiable_backlog_points
+    sum = BacklogItem.select("sum(backlog_items.points) as points").where("backlog_items.id not in (select s.backlog_item_id from sprint_backlog_items s where s.sprint_id=? and done=true)", self.id).first
+    sum[:points]
+  end
+  
+  
   def execute!
     self.real_velocity = 18
     self.generated_defect_points = 2

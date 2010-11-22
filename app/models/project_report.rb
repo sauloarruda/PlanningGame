@@ -45,6 +45,7 @@ end
 
 # delegator for sprint in project report
 class SprintReport
+  attr_reader :sprint
   def initialize(project_report, number)
     @project_report = project_report
     project = project_report.project
@@ -62,5 +63,4 @@ class SprintReport
     end
   end
   
-    
 end
