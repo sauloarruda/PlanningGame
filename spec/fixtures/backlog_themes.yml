@@ -12,3 +12,8 @@ fornecedores:
     title: Fornecedores
     backlog: rede_social_arquitetos
     priority: 90
+    
+universidades:
+    title: Universidades
+    backlog: rede_social_arquitetos
+    priority: 85

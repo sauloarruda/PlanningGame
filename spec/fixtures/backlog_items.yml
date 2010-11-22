@@ -80,3 +80,11 @@ cadastrar_produtos_do_fornecedor:
     points: 5
     priority: 3
     backlog_theme: fornecedores
+
+
+# universidades
+visualizar_perfil_da_universidade:
+    title: Visualizar Perfil da Universidade
+    points: 2
+    priority: 0
+    backlog_theme: universidades

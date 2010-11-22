@@ -1,0 +1,122 @@
+<%= javascript_include_tag "jquery.min", "sprint_backlog_ui" %>
+<style type="text/css" media="screen">
+	body {
+		font-family: Arial, sans-serif;
+		font-size: 12px;
+	}
+	h3 {
+		font-size: 15px;
+		border-bottom: 1px solid #ccc;
+	}
+	div.report {
+		width: 250px;
+		float: left;
+	}
+	div.report label {
+		width: 180px;
+		display: inline-block;
+	}
+	div.report input {
+		width: 40px;
+	}
+	div.clear {
+		clear: both;
+		height: 0px;
+	}
+	div.product-backlog, div.sprint-backlog {
+		width: 500px;
+		float: left;
+	}
+</style>
+<h1><%= @sprint.project.backlog.name %> #<%= @sprint.number %></h1>
+
+<% form_for @sprint do |f| -%>
+<div class="report">
+	<h3><%= t('last_sprint')%></h3>
+	<%= render :partial => "input_text", :locals => { :field => :initial_velocity } %>
+	<%= render :partial => "input_text", :locals => { :field => :accumulated_defect_points } %>
+	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>
+</div>
+
+<div class="report">
+	<h3><%= t('last_sprint')%></h3>
+	<%= render :partial => "input_text", :locals => { :field => :planned_story_points } %>
+	<p>
+		<label><%= t('planned_defect_points')%></label>
+		<%= f.text_field :planned_defect_points, :onkeyup => 'update_plan()' %>
+	</p>
+	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>
+	<%= render :partial => "input_text", :locals => { :field => :planned_velocity } %>
+</div>
+
+<% unless @sprint.real_velocity.nil? -%>
+<div class="report">
+	<h3><%= t('executed')%></h3>
+	<%= render :partial => "input_text", :locals => { :field => :real_velocity } %>
+	<%= render :partial => "input_text", :locals => { :field => :generated_defect_points } %>
+	<p>&nbsp;</p>
+	<%= render :partial => "input_text", :locals => { :field => :balance } %>
+</div>
+<div class="report">
+	<h3>&nbsp;</h3>
+	<%= render :partial => "input_text", :locals => { :field => :real_story_points } %>
+	<%= render :partial => "input_text", :locals => { :field => :total_defects } %>
+	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>
+</div>
+<% end -%>
+<div class="clear"></div>
+
+<div class="product-backlog">
+	<h3><%= t('product_backlog')%> (<span id="product_backlog_points"><%= @sprint.avaiable_backlog_points %></span>)</h3>
+	<div id="product_backlog_div"></div>
+	<button onclick="add(); return false"><%= t('add') %></button>
+</div>
+<div class="sprint-backlog">
+	<h3><%= t('sprint_backlog')%> (<span id="sprint_backlog_points"><%= @sprint.planned_story_points %></span>)</h3>
+	<div id="sprint_backlog_div"></div>
+</div>
+<div class="clear"></div>
+<p><%= f.submit%> <%= t('or')%> <%= link_to t('cancel'), @sprint.project%></p>
+<% end -%>
+
+<script type="text/javascript" charset="utf-8">
+var sprint_backlog_ui
+$(document).ready(function() {
+	var product_backlog_json = eval($.ajax({
+		url: '/sprints/product_backlog.json', 
+		data: ({ backlog_id: <%= @sprint.project.backlog_id %> }),
+		type: "GET",
+		dataType: "json",
+		async: false
+	}).responseText)
+	var sprint_backlog_json = eval($.ajax({
+		url: '/sprints/sprint_backlog.json', 
+		data: ({ project_id: <%= @sprint.project_id %> }),
+		type: "GET",
+		dataType: "json",
+		async: false
+	}).responseText)
+	sprint_backlog_ui = new SprintBacklogUI(product_backlog_json, sprint_backlog_json, <%= @sprint.id %>)
+	sprint_backlog_ui.render_product_backlog($('#product_backlog_div'))
+	sprint_backlog_ui.render_sprint_backlog($('#sprint_backlog_div'))
+})
+function add() {
+	sprint_backlog_ui.add('#product_backlog_div', '#sprint_backlog_div')
+	update_plan()
+}
+function remove(item_id) {
+	sprint_backlog_ui.remove(item_id, '#product_backlog_div', '#sprint_backlog_div')
+	update_plan()
+}
+
+function update_plan() {
+	var story_points = sprint_backlog_ui.story_points()
+	$("#planned_story_points").val(story_points)
+	var story_points = parseInt($("#planned_story_points").val())
+	var defect_points = ($("#sprint_planned_defect_points").val() != "") ? parseInt($("#sprint_planned_defect_points").val()) : 0
+	var actual_technical_debt = parseInt($("#actual_technical_debt").val())
+	$("#planned_velocity").val(actual_technical_debt + defect_points + story_points)
+	$('#product_backlog_points').html(sprint_backlog_ui.backlog_points())
+	$('#sprint_backlog_points').html(story_points)
+}
+</script>

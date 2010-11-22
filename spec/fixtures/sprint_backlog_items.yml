@@ -96,7 +96,7 @@ alfa_rsa_2_preencher_dados_gerais_do_fornecedor:
 
 alfa_rsa_2_cadastrar_produtos_do_fornecedor:
     sprint: alfa_rsa_2
-    backlog_item: 
+    backlog_item: cadastrar_produtos_do_fornecedor
     priority: 6
     done: false
 
