@@ -19,7 +19,10 @@ describe Project do
   it "should create first sprint" do 
     @project.sprints.should have(1).record
     sprint = @project.sprints[0]
-    sprint.number.should == 1
+    sprint.number.should eql(1)
+    sprint.accumulated_defect_points.should eql(0)
+    sprint.planned_defect_points.should eql(0)
+    sprint.planned_story_points.should eql(0)
   end
   
   it "should require backlog and team" do
