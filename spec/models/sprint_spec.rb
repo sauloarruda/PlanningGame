@@ -21,10 +21,24 @@ describe Sprint do
       @sprint.save!
       @sprint.planned_story_points.should eql(21)
     end
+    
+    it "should validate presence of items and defect points" do
+      @sprint = Sprint.new
+      @sprint.valid?.should eql(false)
+      @sprint.should have(1).error_on(:backlog_items)
+      @sprint.should have(1).error_on(:planned_defect_points)
+      @sprint.should have(1).error_on(:project)
+    end
   
+    it "should not execute not valid sprint" do
+      @sprint = Sprint.new
+      @sprint.execute.should eql(false)
+      @sprint.real_velocity.should be_nil
+    end
+      
     it "should execute planning" do
-      # TODO write cucumber spec for calculation rules
-      @sprint.execute!
+      RandomSprintExecution.stub!(:roll_dice).and_return(4,8)
+      @sprint.execute
       @sprint.planned_story_points.should eql(16)
       @sprint.real_velocity.should eql(18)
       @sprint.generated_defect_points.should eql(2)
@@ -102,6 +116,12 @@ describe Sprint do
     
     it "should calculate total defects" do
       @sprint.total_defects.should eql(3)
+    end
+    
+    it "should not execute an already executed sprint" do
+      pending "this don't work, please help"
+      @sprint.execute.should eql(false)
+      @sprint.should have(1).error_on(:real_velocity)
     end
     
   end

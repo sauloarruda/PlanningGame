@@ -11,7 +11,14 @@ class SprintsController < ApplicationController
     params[:backlog_items].each do |item|
       @sprint.backlog_items << SprintBacklogItem.new(item)  
     end
-    if @sprint.save
+    saved = false
+    if (params[:commit] == t('save_plan'))
+      saved = @sprint.save
+    elsif (params[:commit] == t('save_and_execute_sprint'))
+      save = @sprint.execute
+    end
+    puts @sprint.errors.to_json
+    if saved
       redirect_to @sprint.project
     else
       render :action => "show"

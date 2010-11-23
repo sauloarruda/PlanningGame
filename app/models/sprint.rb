@@ -2,6 +2,8 @@
 class Sprint < ActiveRecord::Base
   belongs_to :project
   has_many :backlog_items, :class_name => "SprintBacklogItem", :foreign_key => "sprint_id"
+  validates_size_of :backlog_items, :minimum => 1
+  validates_presence_of :planned_defect_points, :project
   
   before_save :calculate_planned_velocity
 
@@ -82,11 +84,21 @@ class Sprint < ActiveRecord::Base
   end
   
   
-  def execute!
-    self.real_velocity = 18
-    self.generated_defect_points = 2
-    self.generated_technical_debt = 1
-    self.save!
+  def execute
+    if (self.valid?)
+      unless (self.real_velocity.nil?)
+        self.errors.add(:real_velocity, "already was executed")
+        puts self.errors.to_json
+        return false
+      end
+      data = RandomSprintExecution.random_data
+      self.real_velocity = self.initial_velocity + (data[:velocity])
+      self.generated_defect_points = data[:defects]
+      self.accumulated_defect_points += self.generated_defect_points
+      self.generated_technical_debt = RandomSprintExecution.technical_debt(self.accumulated_defect_points)
+      return self.save
+    end
+    return false
   end
   
   private
