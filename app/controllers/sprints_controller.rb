@@ -1,12 +1,12 @@
 class SprintsController < ApplicationController
   
   def show
-    @sprint = Sprint.find_by_id params[:id]
-    @sprint.planned_story_points = 0 if @sprint.planned_story_points.nil?
+    @sprint = Sprint.find params[:id]
+    @sprint.planned_story_points ||= 0
   end
   
   def update
-    @sprint = Sprint.find_by_id params[:id]
+    @sprint = Sprint.find params[:id]
     @sprint.attributes = params[:sprint]
     params[:backlog_items].each do |item|
       @sprint.backlog_items << SprintBacklogItem.new(item)  

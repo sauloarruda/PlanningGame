@@ -1,5 +1,5 @@
 <h1>New Project</h1>
-<% form_for @project do |f| -%>
+<%= form_for @project do |f| -%>
 <% if @project.errors.any? -%>
   <div id="errorExplanation">
     <h2><%= t('errors') %></h2>
@@ -11,12 +11,12 @@
   </div>
 <% end -%>
 <p>
-	<%= f.label :team %>
-	<%= f.select :team_id, @teams %>
+	<%= f.label :team_id %>
+	<%= f.collection_select :team_id, Team.all, :id, :name %>
 </p>
 <p>
-	<%= f.label :backlog %>
-	<%= f.select :backlog_id, @backlogs %>
+	<%= f.label :backlog_id %>
+	<%= f.collection_select :backlog_id, Backlog.all, :id, :name %>
 </p>
 <p><%= f.submit "Create", :disable_with => 'Creating...' %>
 <% end -%>

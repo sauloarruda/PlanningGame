@@ -4,14 +4,15 @@ class Project < ActiveRecord::Base
   belongs_to :backlog
   has_many :sprints, :order => :number
   validates_presence_of :backlog, :team
-
-  before_save :create_first_sprint
   
-  def create_first_sprint
-    self.sprints << Sprint.new(:number => 1, :accumulated_defect_points => 0, :planned_defect_points => 0, :planned_story_points => 0)
-  end
-
+  before_create :create_first_sprint
+  
   def start_date
     self.created_at
+  end
+  
+  private
+  def create_first_sprint
+    self.sprints.build :number => 1, :accumulated_defect_points => 0, :planned_defect_points => 0, :planned_story_points => 0
   end
 end

@@ -1,7 +1,8 @@
 # represents a project's sprint
 class Sprint < ActiveRecord::Base
   belongs_to :project
-  has_many :backlog_items, :class_name => "SprintBacklogItem", :foreign_key => "sprint_id", :order => :priority
+
+  has_many :backlog_items, :class_name => "SprintBacklogItem",:order => :priority
   validates_size_of :backlog_items, :minimum => 1, :on => :update
   validates_presence_of :planned_defect_points, :project
   
@@ -10,7 +11,7 @@ class Sprint < ActiveRecord::Base
   # velocity of previous sprint ou backlog's initial velocity if first
   def initial_velocity 
     if self.number == 1
-      self.project.backlog.initial_velocity 
+      self.project.backlog.initial_velocity
     else
       self.previous.real_velocity rescue nil
     end
@@ -19,15 +20,10 @@ class Sprint < ActiveRecord::Base
   # sum of realized story points from done sprint backlog items
   def real_story_points
     # if there are not done itens, returns null
-    backlog_items = self.backlog_items
-    if backlog_items.length == 0
+    if self.backlog_items.count == 0
       nil
     else
-      points = 0
-      backlog_items.each do |item|
-        points += item.backlog_item.points if item.done?
-      end
-      points
+      self.backlog_items.done.all.sum{|t| t.backlog_item.points }
     end
   end
   
@@ -79,8 +75,7 @@ class Sprint < ActiveRecord::Base
   end
   
   def avaiable_backlog_points
-    sum = BacklogItem.select("sum(backlog_items.points) as points").where("backlog_items.id not in (select s.backlog_item_id from sprint_backlog_items s where s.sprint_id=? and done=true)", self.id).first
-    sum[:points]
+    BacklogItem.where("id not in (#{self.backlog_items.done.select(:backlog_item_id).to_sql})").sum(:points)
   end
   
   

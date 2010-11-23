@@ -1,9 +1,11 @@
 PlanningGame::Application.routes.draw do
   resources :projects
   resources :sprints do
-    get 'product_backlog', :on => :collection
-    get 'sprint_backlog', :on => :collection
+    collection do
+      get :product_backlog, :sprint_backlog
+    end
   end
+  root :to => "projects#new"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

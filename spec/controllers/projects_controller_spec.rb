@@ -8,14 +8,6 @@ describe ProjectsController do
       get 'new'
     end
     
-    it "should load all backlogs" do
-      assigns[:backlogs].should have(1).elements
-    end
-    
-    it "should load teams for user" do
-      assigns[:teams].should have(2).elements
-    end
-    
     it "should instantiate project object" do
       assigns[:project].should_not be_nil
     end
