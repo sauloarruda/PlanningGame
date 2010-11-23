@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   before_save :create_first_sprint
   
   def create_first_sprint
-    self.sprints << Sprint.new(:number => 1, :accumulated_defect_points => 0, :planned_defect_points => 0)
+    self.sprints << Sprint.new(:number => 1, :accumulated_defect_points => 0, :planned_defect_points => 0, :planned_story_points => 0)
   end
 
   def start_date

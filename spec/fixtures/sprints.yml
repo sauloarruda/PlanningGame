@@ -2,6 +2,8 @@ jera_rsa_1:
     number: 1
     project: jera_rsa
     planned_story_points: 16
+    accumulated_defect_points: 0
+    planned_defect_points: 0
 
 alfa_rsa_1:
     number: 1

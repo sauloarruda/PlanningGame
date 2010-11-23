@@ -76,7 +76,10 @@
 	<div id="sprint_backlog_div"></div>
 </div>
 <div class="clear"></div>
-<p><%= f.submit%> <%= t('or')%> <%= link_to t('cancel'), @sprint.project%></p>
+<p>
+	<%= f.submit t('save_plan')%> 
+	<%= f.submit t('save_and_execute_sprint')%> 
+	<%= t('or')%> <%= link_to t('cancel'), @sprint.project%></p>
 <% end -%>
 
 <script type="text/javascript" charset="utf-8">
