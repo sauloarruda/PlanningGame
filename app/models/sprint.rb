@@ -23,7 +23,11 @@ class Sprint < ActiveRecord::Base
     if self.backlog_items.count == 0
       nil
     else
-      self.backlog_items.done.all.sum{|t| t.backlog_item.points }
+      points = 0
+      self.backlog_items.done.each do |item|
+        points += item.backlog_item.points
+      end
+      points
     end
   end
   
