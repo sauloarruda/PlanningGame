@@ -13,21 +13,12 @@ describe Sprint do
     end
   
     it "should add many BackLogItems and calculate sprint planned velocity" do
-      # sprint alredy has 1 backlog item
       @sprint.backlog_items << SprintBacklogItem.new({
         :backlog_item => backlog_items(:visualizar_perfil_do_arquiteto), :priority => 0 })
       @sprint.backlog_items << SprintBacklogItem.new({
         :backlog_item => backlog_items(:buscar_arquiteto), :priority => 1 })
       @sprint.save!
       @sprint.planned_story_points.should eql(21)
-    end
-    
-    it "should validate presence of items and defect points" do
-      @sprint = Sprint.new
-      @sprint.valid?.should eql(false)
-      @sprint.should have(1).error_on(:backlog_items)
-      @sprint.should have(1).error_on(:planned_defect_points)
-      @sprint.should have(1).error_on(:project)
     end
   
     it "should not execute not valid sprint" do
@@ -43,6 +34,27 @@ describe Sprint do
       @sprint.real_velocity.should eql(18)
       @sprint.generated_defect_points.should eql(2)
       @sprint.generated_technical_debt.should eql(1)
+    end
+    
+    it "should mark backlog items as done" do
+      RandomSprintExecution.stub!(:roll_dice).and_return(4,8)
+      @sprint.backlog_items << SprintBacklogItem.new({
+        :backlog_item => backlog_items(:visualizar_perfil_do_arquiteto), :priority => 0 })
+      @sprint.backlog_items << SprintBacklogItem.new({
+        :backlog_item => backlog_items(:buscar_arquiteto), :priority => 1 })
+      @sprint.execute
+      @sprint.backlog_items.each do |item|
+        if item.backlog_item == backlog_items(:construir_show_room_de_projetos_do_arquiteto)
+          item.done.should eql(false)
+        else
+          item.done.should eql(true)
+        end
+      end
+      @sprint.real_story_points.should eql(16)
+    end
+    
+    it "should create next sprint" do
+      pending "write spectations"
     end
   end
   
@@ -124,6 +136,24 @@ describe Sprint do
       @sprint.should have(1).error_on(:real_velocity)
     end
     
+  end
+  
+  context "validations" do
+    fixtures :projects
+    it "should validate presence of project and defect points on create" do
+      @sprint = Sprint.new
+      @sprint.save.should eql(false)
+      @sprint.should have(1).error_on(:planned_defect_points)
+      @sprint.should have(1).error_on(:project)
+    end
+    
+    it "should validate presence of backlog items on update" do
+      @sprint = Sprint.new :planned_defect_points => 0, :project => projects(:jera_rsa)
+      @sprint.save.should eql(true)
+      # update
+      @sprint.save.should eql(false)
+      @sprint.should have(1).error_on(:backlog_items)
+    end
   end
   
 end
