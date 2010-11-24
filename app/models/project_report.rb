@@ -17,6 +17,10 @@ class ProjectReport
   def name
     @project.backlog.name
   end
+  
+  def sprints_length 
+    @project.sprints.length
+  end
 
 private
   def initialize_totals

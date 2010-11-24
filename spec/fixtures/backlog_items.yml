@@ -88,3 +88,216 @@ visualizar_perfil_da_universidade:
     points: 2
     priority: 0
     backlog_theme: universidades
+
+buscar_universidades:
+    title: Buscar Universidades
+    points: 2
+    priority: 1
+    backlog_theme: universidades
+    
+preencher_dados_gerais_universidade:
+    title: Preencher Dados Gerais da Universidade
+    points: 2
+    priority: 2
+    backlog_theme: universidades
+    
+
+# portal
+pagina_inicial:
+    title: Página Inicial
+    points: 5
+    priority: 0
+    backlog_theme: portal
+    
+institucionais:
+    title: "Institucionais (quem somos, contato, publicidade)"
+    points: 2
+    priority: 1
+    backlog_theme: portal
+ 
+   
+# mensagens
+enviar_mensagem_para_usuario:
+    title: Enviar Mensagem para Usuário
+    points: 1
+    priority: 0
+    backlog_theme: mensagens
+    
+responder_mensagem_do_usuario:
+    title: Responder Mensagem do Usuário
+    points: 1
+    priority: 1
+    backlog_theme: mensagens
+    
+    
+# seguranca
+autenticar:
+    title: Autenticar
+    points: 1
+    priority: 0
+    backlog_theme: seguranca
+    
+recuperar_senha:
+    title: Recuperar Senha
+    points: 1
+    priority: 1
+    backlog_theme: seguranca
+    
+alterar_senha:
+    title: Alterar Senha
+    points: 1
+    priority: 2
+    backlog_theme: seguranca
+    
+    
+# pagamento_mensalidades
+emitir_boleto_para_pagamento:
+    title: Emitir Boleto para Pagamento
+    points: 5
+    priority: 0
+    backlog_theme: pagamento_mensalidades
+    
+consultar_pagamentos_em_aberto:
+    title: Consultar Pagamentos em Aberto
+    points: 3
+    priority: 1
+    backlog_theme: pagamento_mensalidades
+
+enviar_email_notificando_atraso:
+    title: Enviar E-mail Notificando Atraso
+    points: 3
+    priority: 2
+    backlog_theme: pagamento_mensalidades
+
+desativar_reativar_conta_por_falta_de_pagamento:
+    title: Desativar/Reativar Conta por Falta de Pagamento
+    points: 1
+    priority: 3
+    backlog_theme: pagamento_mensalidades
+
+informar_pagamento_do_boleto:
+    title: Informar Pagamento do Boleto
+    points: 2
+    priority: 4
+    backlog_theme: pagamento_mensalidades
+    
+consultar_dados_de_pagamento:
+    title: Consultar Dados de Pagamento
+    points: 5
+    priority: 5
+    backlog_theme: pagamento_mensalidades
+
+
+# divulgacao_eventos
+divulgar_evento:
+    title: Divulgar de Evento
+    points: 2
+    priority: 0
+    backlog_theme: divulgacao_eventos
+
+consultar_agenda_de_eventos:
+    title: Consultar Agenda de Eventos
+    points: 3
+    priority: 1
+    backlog_theme: divulgacao_eventos
+
+
+# divulgacao_empregos_estagios
+divulgar_vaga:
+    title: Divulgar Vaga
+    points: 2
+    priority: 0
+    backlog_theme: divulgacao_empregos_estagios
+
+consultar_vagas:
+    title: Consultar Vagas
+    points: 2
+    priority: 1
+    backlog_theme: divulgacao_empregos_estagios
+
+
+# propaganda_empresas
+veicular_banner:
+    title: Veicular Banner
+    points: 2
+    priority: 0
+    backlog_theme: propaganda_empresas
+
+divulgar_promocoes:
+    title: Divulgar Promoções
+    points: 3
+    priority: 1
+    backlog_theme: propaganda_empresas
+
+cadastrar_banner:
+    title: Cadastrar Banner
+    points: 3
+    priority: 2
+    backlog_theme: propaganda_empresas
+    
+consultar_estatísticas_do_banner:
+    title: Consultar Estatísticas do Banner
+    points: 5
+    priority: 3
+    backlog_theme: propaganda_empresas
+    
+    
+# recomendacao_livro
+recomendar_livro:
+    title: Recomendar Livro
+    points: 2
+    priority: 0
+    backlog_theme: recomendacao_livro
+    
+comentar_recomendacao_do_livro:
+    title: Comentar Recomendação do Livro
+    points: 1
+    priority: 2
+    backlog_theme: recomendacao_livro
+
+consultar_recomendacoes_do_livro:
+    title: Consultar Recomendações do Livro
+    points: 2
+    priority: 3
+    backlog_theme: recomendacao_livro
+
+linkar_livro_com_submarino:
+    title: Linkar Livro com Submarino
+    points: 3
+    priority: 4
+    backlog_theme: recomendacao_livro
+
+
+# forum_discussao
+visualizar_forum:
+    title: Visualizar Fórum
+    points: 2
+    priority: 0
+    backlog_theme: forum_discussao
+
+criar_forum:
+    title: Criar Fórum
+    points: 1
+    priority: 1
+    backlog_theme: forum_discussao
+
+criar_topico_do_forum:
+    title: Criar Tópico do Fórum
+    points: 2
+    priority: 2
+    backlog_theme: forum_discussao
+
+responder_topico_do_forum:
+    title: Responder Tópico do Fórum
+    points: 2
+    priority: 3
+    backlog_theme: forum_discussao
+
+moderar_forum:
+    title: Moderar Fórum
+    points: 3
+    priority: 4
+    backlog_theme: forum_discussao
+
+
+

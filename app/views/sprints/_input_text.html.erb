@@ -1,4 +1,4 @@
 <p>
 	<label><%= t(field) %></label>
-	<%= text_field_tag field, eval("@sprint.#{field.to_s}"), :disabled => true %>
+	<%= text_field_tag(field, eval("@sprint.#{field.to_s}"), :disabled => true) rescue 0 %>
 </p>

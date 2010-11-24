@@ -24,8 +24,10 @@ class Sprint < ActiveRecord::Base
       nil
     else
       points = 0
-      self.backlog_items.done.each do |item|
-        points += item.backlog_item.points
+      self.backlog_items.each do |item|
+      # self.backlog_items.each do |item|
+        # FIXME @sauloarruda self.backlog_itens.done not working
+        points += item.backlog_item.points if (item.done?) 
       end
       points
     end
@@ -79,7 +81,9 @@ class Sprint < ActiveRecord::Base
   end
   
   def avaiable_backlog_points
-    BacklogItem.where("id not in (#{self.backlog_items.done.select(:backlog_item_id).to_sql})").sum(:points)
+    backlog_points = BacklogItem.where("backlog_themes.backlog_id" => self.project.backlog_id).joins(:backlog_theme).sum(:points)
+    sprint_points = SprintBacklogItem.where("sprints.project_id" => self.project.id).joins(:backlog_item, :sprint).sum("backlog_items.points").to_i
+    backlog_points.to_i - sprint_points.to_i
   end
   
   
@@ -106,8 +110,13 @@ class Sprint < ActiveRecord::Base
   protected
   
     def create_next_sprint
-      next_sprint = Sprint.new :number => self.number + 1, :project => self.project, :accumulated_defect_points => self.total_defects, :planned_defect_points => 0, :planned_story_points => 0
-      return next_sprint.save!
+      if self.avaiable_backlog_points > 0
+        next_sprint = Sprint.new :number => self.number + 1, :project => self.project, :accumulated_defect_points => self.total_defects, :planned_defect_points => 0, :planned_story_points => 0
+        return next_sprint.save
+      else
+        self.project.end_date = Time.now
+        return self.project.save
+      end
     end
   
     def update_done_items
@@ -115,6 +124,7 @@ class Sprint < ActiveRecord::Base
       self.backlog_items.each do |item|
         item_points = item.backlog_item.points
         item.done = (done_points + item_points) < self.real_velocity
+        item.save! # TODO is this the better way?
         done_points += item_points
       end
     end
@@ -123,7 +133,8 @@ class Sprint < ActiveRecord::Base
       data = RandomSprintExecution.random_data
       self.real_velocity = self.initial_velocity + (data[:velocity])
       self.generated_defect_points = data[:defects]
-      self.generated_technical_debt = RandomSprintExecution.technical_debt(self.accumulated_defect_points + self.generated_defect_points)
+      self.generated_technical_debt = RandomSprintExecution.technical_debt(
+        self.accumulated_defect_points - self.planned_defect_points + self.generated_defect_points)
     end
   
   private  

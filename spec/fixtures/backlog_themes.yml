@@ -17,3 +17,49 @@ universidades:
     title: Universidades
     backlog: rede_social_arquitetos
     priority: 85
+    
+portal:
+    title: Portal
+    backlog: rede_social_arquitetos
+    priority: 80
+    
+mensagens:
+    title: Mensagens
+    backlog: rede_social_arquitetos
+    priority: 75
+    
+seguranca:
+    title: Segurança
+    backlog: rede_social_arquitetos
+    priority: 70
+    
+pagamento_mensalidades:
+    title: Pagamento de Mensalidades
+    backlog: rede_social_arquitetos
+    priority: 65
+    
+divulgacao_eventos:
+    title: Divulgação de Eventos
+    backlog: rede_social_arquitetos
+    priority: 60
+    
+divulgacao_empregos_estagios:
+    title: Divulgação de Empregos/Estágios
+    backlog: rede_social_arquitetos
+    priority: 55
+    
+propaganda_empresas:
+    title: Propaganda de Empresas
+    backlog: rede_social_arquitetos
+    priority: 50
+    
+recomendacao_livro:
+    title: Recomendação de Livro
+    backlog: rede_social_arquitetos
+    priority: 45
+    
+forum_discussao:
+    title: Fórum de Discussão
+    backlog: rede_social_arquitetos
+    priority: 40
+    

@@ -27,6 +27,12 @@
 		width: 500px;
 		float: left;
 	}
+	.item_done {
+		text-decoration:line-through;
+		color: #999
+	}
+	.item_not_done {
+	}
 </style>
 <h1><%= @sprint.project.backlog.name %> #<%= @sprint.number %></h1>
 
@@ -34,8 +40,8 @@
 <div class="report">
 	<h3><%= t('last_sprint')%></h3>
 	<%= render :partial => "input_text", :locals => { :field => :initial_velocity } %>
-	<%= render :partial => "input_text", :locals => { :field => :accumulated_defect_points } %>
-	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>
+	<%= render :partial => "input_text", :locals => { :field => 'previous.total_defects' } %>
+	<%= render :partial => "input_text", :locals => { :field => 'previous.actual_technical_debt' } %>
 </div>
 
 <div class="report">
@@ -61,7 +67,7 @@
 	<h3>&nbsp;</h3>
 	<%= render :partial => "input_text", :locals => { :field => :real_story_points } %>
 	<%= render :partial => "input_text", :locals => { :field => :total_defects } %>
-	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>
+	<%= render :partial => "input_text", :locals => { :field => :generated_technical_debt } %>
 </div>
 <% end -%>
 <div class="clear"></div>
@@ -69,7 +75,7 @@
 <div class="product-backlog">
 	<h3><%= t('product_backlog')%> (<span id="product_backlog_points"><%= @sprint.avaiable_backlog_points %></span>)</h3>
 	<div id="product_backlog_div"></div>
-	<button onclick="add(); return false"><%= t('add') %></button>
+	<button onclick="add_item(); return false"><%= t('add') %></button>
 </div>
 <div class="sprint-backlog">
 	<h3><%= t('sprint_backlog')%> (<span id="sprint_backlog_points"><%= @sprint.planned_story_points %></span>)</h3>
@@ -77,9 +83,13 @@
 </div>
 <div class="clear"></div>
 <p>
+	<% if (@sprint.real_velocity.nil?) -%>
 	<%= f.submit t('save_plan')%> 
 	<%= f.submit t('save_and_execute_sprint')%> 
 	<%= t('or')%> <%= link_to t('cancel'), @sprint.project%></p>
+	<% else %>
+	<%= link_to t('return_to_project'), @sprint.project%></p>
+	<% end -%>
 <% end -%>
 
 <script type="text/javascript" charset="utf-8">
@@ -103,11 +113,11 @@ $(document).ready(function() {
 	sprint_backlog_ui.render_product_backlog($('#product_backlog_div'))
 	sprint_backlog_ui.render_sprint_backlog($('#sprint_backlog_div'))
 })
-function add() {
+function add_item() {
 	sprint_backlog_ui.add('#product_backlog_div', '#sprint_backlog_div')
 	update_plan()
 }
-function remove(item_id) {
+function remove_item(item_id) {
 	sprint_backlog_ui.remove(item_id, '#product_backlog_div', '#sprint_backlog_div')
 	update_plan()
 }
