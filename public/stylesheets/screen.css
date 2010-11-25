@@ -1,0 +1,119 @@
+@charset "utf-8";
+
+/*  */
+
+body {
+    background: #666;
+}
+#container {
+    width: 960px;
+    margin: 30px auto 0 auto;
+}
+#header {
+    background: url('/images/bg-header.png') no-repeat;
+    height: 68px;
+}
+#content {
+    background: #FFF;
+    padding: 20px;
+}
+#footer {
+    background: url('/images/bg-footer.png') no-repeat;
+    height: 72px;
+    padding: 25px;
+    text-align: center;
+    color: #666;
+}
+
+
+.table {
+    border: 1px solid #888;
+    margin-bottom: 20px;
+	width: 100%;
+}
+.table th, .table td {
+    padding: 5px 10px;
+    border-bottom: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+}
+.table th {
+	font-size: 14px;
+}
+.table td {
+	text-align: center;
+	vertical-align: middle;
+	font-size: 14px;
+}
+.table thead th {
+	color: black;
+	font-size: 16px;
+	text-align: center;
+    background: #EAEAEA;
+	border-left: 1px solid #CCC;
+}
+.table th.tooltip {
+	font-weight: normal !important;
+	color: #999;
+}
+
+
+input, select, label, textarea {
+    padding: 3px;
+}
+label {
+	width: 100px;
+	display: inline-block;
+}
+
+.btn {
+    background: url('/images/btn.png') no-repeat;
+    padding: 5px 10px;
+    border: 1px solid #CCC;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
+.btn:hover {
+    color: #000;
+}
+.btn:active {
+    background: url('/images/btn.png') no-repeat 0 -35px;
+}
+
+
+
+/* Project table styles */
+td.initial_velocity, td.real_velocity {
+	font-weight: bold;
+	background-color: #DAF0D1;
+}
+td.accumulated_defect_points, td.total_defects {
+	background-color: #FFFFD9;
+}
+td.actual_technical_debt, td.generated_technical_debt {
+	background-color: #FFCDDF;	
+}
+td.planned_velocity, td.functional_velocity {
+	background-color: #FFF3D1
+}
+td.balance {
+	background-color: #EBD9F0;
+}
+
+tr.actual_technical_debt td, tr.actual_technical_debt th.tooltip,
+tr.planned_velocity td, tr.planned_velocity th.tooltip,
+tr.balance td, tr.balance th.tooltip {
+	border-bottom: 2px solid #888;
+}
+
+
+
+
+.initial_velocity.sprint_1, .accumulated_defect_points.sprint_1, .actual_technical_debt.sprint_1, .planned_defect_points.sprint_1, .generated_defect_points {
+	background-color: #D5D5D5;
+}
+.total, .average {
+	color: black;
+	font-weight: bold;
+ 	background-color: #CEE0FF !important;
+}

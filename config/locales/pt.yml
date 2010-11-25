@@ -1,6 +1,41 @@
 pt:
-    separator: "," # fraction separator
+    accumulated_defect_points: B0. Defeitos Pendentes
+    accumulated_defect_points_tooltip: Defeitos do último sprint
+    actual_technical_debt: D0. Débito Técnico
+    actual_technical_debt_tooltip: Débito técnico acumulado
+    average: Média
+    backlog: Product Backlog
+    balance: Saldo
+    balance_tooltip: Pontos ociosos ou faltantes
+    cancel: Cancelar
+    create: Criar
+    creating: Criando
+    functional_velocity: VF. Velocidade Funcional
+    functional_velocity_tooltip: VF = VA - (DP + BP)
+    generated_defect_points: BA. Defeitos Gerados
+    generated_defect_points_tooltip: Defeitos gerados na sprint
+    initial_velocity: V0. Velocidade Inicial
+    initial_velocity_tooltip: Velocidade do último sprint
+    new: Novo
+    or: ou
+    planned_defect_points: BP. Pontos Defeitos
+    planned_defect_points_tooltip: Qtde de defeitos planejados 
+    planned_story_points: FP. Pontos Funcionalidades
+    planned_story_points_tooltip: Soma das histórias do sprint
+    planned_velocity: TP. Pontos Planejados
+    planned_velocity_tooltip: TP = DP + BP + FP
+    project: Projeto
+    real_story_points: FA. Funcionalidades Atual
+    real_story_points_tooltip: Soma das histórias realizadas
+    real_velocity: VA. Velocidade Atual
+    real_velocity_tooltip: Velocidade da sprint executada
     save_and_execute_sprint: Gravar e Executar Sprint
     save_plan: Gravar Plano
-    cancel: Cancelar
-    or: ou
+    separator: "," # fraction separator
+    sprints: Sprints
+    team: Equipe
+    total: Total
+    total_defects: BT. Total de Defeitos
+    total_defects_tooltip: TD = (B0 - BP) + BA
+    generated_technical_debt: DT. Débito Técnico
+    generated_technical_debt_tooltip: Débito técnico gerado

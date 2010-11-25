@@ -4,15 +4,29 @@
   <head>
     <title><%= h(yield(:title) || "PlanningGame") %></title>
 	<%= csrf_meta_tag %>
-    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_link_tag 'default' %>
+	<%= stylesheet_link_tag 'screen' %>
+	<!--[if lte IE 7]>
+	<%= stylesheet_link_tag 'ie' %>
+	<![endif]-->
+
   </head>
   <body>
-    <div id="container">
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>
-      
-      <%= yield %>
-    </div>
+	<div id="container">
+
+	    <div id="header"></div>
+
+	    <div id="content">
+			<%- flash.each do |name, msg| -%>
+			  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<%- end -%>
+
+<%= yield %>
+		</div>
+		
+		<div id="footer">
+			<div><a href=""><%= t('terms_of_service')%></a> | <a href=""><%= t('feedback')%></a> </div>
+			<div><%= t('planning_game') %><%= t('is_a_service_of') %> <a href="http://jera.com.br">Jera Software Ágil</a>.</div>
+	</div>
   </body>
 </html>

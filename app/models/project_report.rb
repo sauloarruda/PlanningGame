@@ -6,7 +6,7 @@ class ProjectReport
   # fields to be exposed by SprintReport delegator
   ProjectReport::EXPOSED_FIELDS = [:initial_velocity, :accumulated_defect_points, :actual_technical_debt,
     :planned_defect_points, :planned_story_points, :planned_velocity, :real_velocity, :functional_velocity,
-    :real_story_points, :balance, :generated_defect_points, :total_defects]
+    :real_story_points, :balance, :generated_defect_points, :total_defects, :generated_technical_debt]
     
   def initialize(project_id)
     @project = Project.find_by_id(project_id)
@@ -16,6 +16,10 @@ class ProjectReport
   
   def name
     @project.backlog.name
+  end
+  
+  def team
+    @project.team.name
   end
   
   def sprints_length 
@@ -59,6 +63,10 @@ class SprintReport
     else
       @sprint = Sprint.new :project => project, :number => number + 1
     end  
+  end
+  
+  def number 
+    @sprint.number
   end
   
   ProjectReport::EXPOSED_FIELDS.each do |method_name|

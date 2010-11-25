@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CONDITIONAL COMMENTS IE */
+/* Hack para IE7 => * */
+/* Hack para IE6 => _ */
+
+body {
+	text-align: center;
+}
+#container {
+	text-align: left;
+}
+

@@ -1,17 +1,20 @@
-<h1><%= @project.name %></h1>
-<table border="1">
+<h1><%= @project.team %> - <%= @project.name %></h1>
+<table class="table" border="0" cellspacing="0" cellpadding="0">
+	<thead>
 	<tr>
 		<th><%= t('sprints') %></th>
 		<% @project.sprints.each do |sprint| -%>
-		<th><%= (sprint.sprint.id.nil?) ? '#' + sprint.sprint.number.to_s : link_to('#' + sprint.sprint.number.to_s, sprint.sprint) %></th>
+		<th class="sprint"><%= (sprint.sprint.id.nil?) ? '#' + sprint.sprint.number.to_s : link_to('#' + sprint.sprint.number.to_s, sprint.sprint) %></th>
 		<% end -%>
-		<th><%= t('total') %></th>
-		<th><%= t('average') %></th>
+		<th class="total"><%= t('total') %></th>
+		<th class="average"><%= t('average') %></th>
 	</tr>
-	
+	<thead>
+
+	<tbody>
 	<% ProjectReport::EXPOSED_FIELDS.each do |field| -%>
 	<%= render :partial => "report_field", :locals => { :field => field.to_s } %>
 	<% end %>
-
+	</tbody>
 
 </table>

@@ -1,13 +1,5 @@
 <%= javascript_include_tag "jquery.min", "sprint_backlog_ui" %>
 <style type="text/css" media="screen">
-	body {
-		font-family: Arial, sans-serif;
-		font-size: 12px;
-	}
-	h3 {
-		font-size: 15px;
-		border-bottom: 1px solid #ccc;
-	}
 	div.report {
 		width: 250px;
 		float: left;
@@ -84,7 +76,7 @@
 <div class="clear"></div>
 <p>
 	<% if (@sprint.real_velocity.nil?) -%>
-	<%= f.submit t('save_plan')%> 
+	<%= f.submit t('save_plan'), :class => "btn"%> 
 	<%= f.submit t('save_and_execute_sprint')%> 
 	<%= t('or')%> <%= link_to t('cancel'), @sprint.project%></p>
 	<% else %>

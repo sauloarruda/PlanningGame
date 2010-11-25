@@ -1,0 +1,129 @@
+@charset "utf-8";
+
+/*---------------------------------------------
+>> ESTILOS GLOBAIS
+---------------------------------------------*/
+
+/* CSS RESET */
+
+body {
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+html, body, div, span, applet, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, button, hr { 
+	vertical-align:baseline;font-weight: inherit;font-style: inherit; outline: 0; padding: 0; margin: 0; border: 0;
+}
+:focus {outline:0;} body {background:white; line-height:1;} ol, ul {list-style:none;} table {border-collapse: separate; border-spacing:0;} caption, th, td {font-weight:normal; text-align:left;} blockquote:before, blockquote:after, q:before, q:after {content: "";} blockquote, q {quotes: "" "";}
+
+strong {font-weight:bold;}
+cite,em,dfn {font-style:italic;}
+pre, code, kbd, samp, tt, var {font-family:"Courier New", Courier, monospace;}
+pre, dl {margin-bottom:20px;}
+dl {line-height:17px;}
+abbr, acronym {text-transform:uppercase; cursor:help; border-bottom:1px dotted #000;font-size:85%;}
+acronym {cursor:auto; border-bottom:none;}
+big { font-size:125%; line-height:80%;}
+dfn, ins {text-decoration:underline;}
+small {font-size:85%;}
+sub, sup {font-size:85%;}
+sub {vertical-align:bottom;}
+sup {vertical-align:top;}
+th {font-weight:bold;}
+input, textarea, select, option, button {font-family: inherit; color:inherit; font-size:inherit;}
+
+/* LINKS */
+a {color: blue; text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+/* TEXT REPLACEMENT */
+.rp {overflow:hidden;display:block;text-indent:-5000px;width:0px;height:0px;font-size:1px;}
+
+/* ESTILOS GLOBAIS */
+.clear {clear:both;}
+
+/*---------------------------------------------
+>> CONTEÚDO
+---------------------------------------------*/
+
+#content {
+	color: #666;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6, .h1, .h2, .h3, .h4, .h5, .h6, #content dt, .dt {
+	font-family: Arial, Helvetica, sans-serif;
+	color:#000;
+	font-weight:bold;
+	margin:0 0 15px 0;
+	clear:both;
+}
+#content h1, .h1 {font-size:20px; color: #333;}
+#content h2, .h2 {font-size:24px;}
+#content h3, .h3 {font-size:22px;}
+#content h4, .h4 {font-size:19px;}
+#content h5, .h5 {font-size:16px;}
+#content h6, .h6, #content dt, .dt {font-size:12px;}
+
+#content a {color: #00F; text-decoration:none;}
+#content a:hover {text-decoration:underline;}
+
+#content p, .p {
+	line-height:17px;
+	text-align:justify;
+	margin-bottom:15px;
+}
+#content ul, #content ol, .ul, .ol {
+	list-style:disc outside;
+	line-height:17px;
+	margin:20px 40px 20px 40px;
+}
+#content ul ul, #content ol ol {margin:3px 20px 20px 20px;}
+#content ol, .ol {list-style:decimal outside;}
+#content ul li, #content ol li, .ul li, .ol li {margin-bottom:3px;}
+#content address {font-style:normal; margin-bottom:20px;}
+#content blockquote {padding:0 30px;font-style:italic;}
+
+#content .img-link, .img-link {
+	border:3px solid #b5c182;
+	float:left;
+	display:inline;
+	margin:0 20px 20px 0;
+}
+.img-link {
+	display:inline-block;
+	margin:0;
+	float:none;
+}
+#content .img-link:hover, .img-link:hover {
+	border:3px solid #83A51A;
+}
+#content form p {
+	margin: 10px;
+}
+
+/*---------------------------------------------
+>> TEMPORÁRIOS
+---------------------------------------------*/
+
+/* FONTES WEBSAFE */
+
+/*
+font-family: Arial, Helvetica, sans-serif; 
+font-family: 'Arial Black', Gadget, sans-serif; 
+font-family: 'Bookman Old Style', serif; 
+font-family: 'Comic Sans MS', cursive; 
+font-family: Courier, monospace; 
+font-family: 'Courier New', Courier, monospace; 
+font-family: Garamond, serif; 
+font-family: Georgia, serif; 
+font-family: Impact, Charcoal, sans-serif; 
+font-family: 'Lucida Console', Monaco, monospace; 
+font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; 
+font-family: 'MS Sans Serif', Geneva, sans-serif; 
+font-family: 'MS Serif', 'New York', sans-serif; 
+font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif; 
+font-family: Symbol, sans-serif; 
+font-family: Tahoma, Geneva, sans-serif; 
+font-family: 'Times New Roman', Times, serif; 
+font-family: 'Trebuchet MS', Helv
