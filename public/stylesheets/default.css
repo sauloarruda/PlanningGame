@@ -33,7 +33,7 @@ th {font-weight:bold;}
 input, textarea, select, option, button {font-family: inherit; color:inherit; font-size:inherit;}
 
 /* LINKS */
-a {color: blue; text-decoration:none;}
+a {color: #999; text-decoration:none;}
 a:hover {text-decoration:underline;}
 
 /* TEXT REPLACEMENT */
@@ -60,19 +60,11 @@ a:hover {text-decoration:underline;}
 }
 #content h1, .h1 {font-size:20px; color: #333;}
 #content h2, .h2 {font-size:24px;}
-#content h3, .h3 {font-size:22px;}
-#content h4, .h4 {font-size:19px;}
-#content h5, .h5 {font-size:16px;}
 #content h6, .h6, #content dt, .dt {font-size:12px;}
 
 #content a {color: #00F; text-decoration:none;}
 #content a:hover {text-decoration:underline;}
 
-#content p, .p {
-	line-height:17px;
-	text-align:justify;
-	margin-bottom:15px;
-}
 #content ul, #content ol, .ul, .ol {
 	list-style:disc outside;
 	line-height:17px;
@@ -99,7 +91,8 @@ a:hover {text-decoration:underline;}
 	border:3px solid #83A51A;
 }
 #content form p {
-	margin: 10px;
+	padding: 5px;
+	margin: 2px 1px;
 }
 
 /*---------------------------------------------

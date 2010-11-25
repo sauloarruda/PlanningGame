@@ -1,4 +1,4 @@
-<p>
-	<label><%= t(field) %></label>
-	<%= text_field_tag(field, eval("@sprint.#{field.to_s}"), :disabled => true) rescue 0 %>
+<p class="<%= field.to_s.gsub("\.", "_") %>">
+	<label><%= t(field.to_s.gsub("\.", "_")) %><br/><span class="tooltip"><%= t(field.to_s.gsub("\.", "_") + '_tooltip') %></span></label>
+	<%= text_field_tag(field, eval("@sprint.#{field.to_s}"), :disabled => true, :class=>'disabled') rescue text_field_tag(field, 0, :disabled => true, :class=>'disabled') %>
 </p>

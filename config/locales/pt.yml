@@ -1,4 +1,5 @@
 pt:
+    add: ›
     accumulated_defect_points: B0. Defeitos Pendentes
     accumulated_defect_points_tooltip: Defeitos do último sprint
     actual_technical_debt: D0. Débito Técnico
@@ -10,12 +11,16 @@ pt:
     cancel: Cancelar
     create: Criar
     creating: Criando
+    executed: Executado
+    feedback: Feedback
     functional_velocity: VF. Velocidade Funcional
     functional_velocity_tooltip: VF = VA - (DP + BP)
     generated_defect_points: BA. Defeitos Gerados
     generated_defect_points_tooltip: Defeitos gerados na sprint
     initial_velocity: V0. Velocidade Inicial
     initial_velocity_tooltip: Velocidade do último sprint
+    is_a_service_of: é um serviço da 
+    last_sprint: Último Sprint
     new: Novo
     or: ou
     planned_defect_points: BP. Pontos Defeitos
@@ -24,16 +29,27 @@ pt:
     planned_story_points_tooltip: Soma das histórias do sprint
     planned_velocity: TP. Pontos Planejados
     planned_velocity_tooltip: TP = DP + BP + FP
+    planning: Planejamento
+    planning_game: PlanningGame
+    previous_total_defects: B0. Defeitos Pendentes
+    previous_total_defects_tooltip: Defeitos do último sprint
+    previous_actual_technical_debt: D0. Débito Técnico
+    previous_actual_technical_debt_tooltip: Débito técnico acumulado
+    product_backlog: Product Backlog
     project: Projeto
     real_story_points: FA. Funcionalidades Atual
     real_story_points_tooltip: Soma das histórias realizadas
     real_velocity: VA. Velocidade Atual
     real_velocity_tooltip: Velocidade da sprint executada
+    return_to_project: « Voltar ao Projeto
+    saved_successfuly: Gravado com sucesso!
     save_and_execute_sprint: Gravar e Executar Sprint
     save_plan: Gravar Plano
     separator: "," # fraction separator
+    sprint_backlog: Sprint Backlog
     sprints: Sprints
     team: Equipe
+    terms_of_service: Termos do Serviço
     total: Total
     total_defects: BT. Total de Defeitos
     total_defects_tooltip: TD = (B0 - BP) + BA

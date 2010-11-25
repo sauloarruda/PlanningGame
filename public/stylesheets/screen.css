@@ -38,6 +38,7 @@ body {
 }
 .table th {
 	font-size: 14px;
+	background-color: #FFF;
 }
 .table td {
 	text-align: center;
@@ -82,33 +83,31 @@ label {
 
 
 
-/* Project table styles */
-td.initial_velocity, td.real_velocity {
+/* Projects pages */
+.planned_velocity, .initial_velocity, .real_velocity, .planned_defect_points {
 	font-weight: bold;
-	background-color: #DAF0D1;
-}
-td.accumulated_defect_points, td.total_defects {
-	background-color: #FFFFD9;
-}
-td.actual_technical_debt, td.generated_technical_debt {
-	background-color: #FFCDDF;	
-}
-td.planned_velocity, td.functional_velocity {
-	background-color: #FFF3D1
-}
-td.balance {
-	background-color: #EBD9F0;
 }
 
+.initial_velocity, .real_velocity {
+	background-color: #DAF0D1;
+}
+.accumulated_defect_points, .total_defects, .previous_total_defects {
+	background-color: #FFFFD9;
+}
+.actual_technical_debt, .generated_technical_debt, .previous_actual_technical_debt {
+	background-color: #FFCDDF;	
+}
+.planned_velocity, .functional_velocity {
+	background-color: #FFF3D1
+}
+.balance {
+	background-color: #EBD9F0;
+}
 tr.actual_technical_debt td, tr.actual_technical_debt th.tooltip,
 tr.planned_velocity td, tr.planned_velocity th.tooltip,
 tr.balance td, tr.balance th.tooltip {
 	border-bottom: 2px solid #888;
 }
-
-
-
-
 .initial_velocity.sprint_1, .accumulated_defect_points.sprint_1, .actual_technical_debt.sprint_1, .planned_defect_points.sprint_1, .generated_defect_points {
 	background-color: #D5D5D5;
 }
@@ -116,4 +115,90 @@ tr.balance td, tr.balance th.tooltip {
 	color: black;
 	font-weight: bold;
  	background-color: #CEE0FF !important;
+}
+
+/* Sprints pages */
+div.report {
+	width: 25%;
+	float: left;
+}
+div.report label {
+	width: 160px;
+	display: inline-block;
+}
+div.report input {
+	font-size: 13px;
+	width: 30px;
+	text-align: right;
+	float: right;
+}
+div.report input.disabled {
+	border: 1px solid #ccc;
+	background-color: #F0F0F0;
+	padding: 5px;
+}
+div.report p.planned_defect_points input {
+	border: 1px solid;
+	padding: 5px;
+}
+div.report p.planned_velocity input {
+	font-weight: bold;
+}
+div.clear {
+	clear: both;
+	height: 0px;
+}
+div.product-backlog, div.sprint-backlog {
+	width: 50%;
+	float: left;
+}
+.item_done {
+	text-decoration:line-through;
+	color: #999
+}
+.item_not_done {
+}
+.space {
+	height: 28px;
+}
+span.tooltip {
+	font-size: 11px;
+	font-weight: normal;
+	color: #999;
+}
+#content div.report h3, #content div.product-backlog h3, #content div.sprint-backlog h3 {
+	font-size: 14px;
+	color: #000;
+	border-bottom: 1px solid #CCC;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+.product-backlog select {
+	width: 90%;
+	float: left;
+}
+.product-backlog button {
+	float: left;
+	width: 30px;
+	height: 200px;
+	font-size: 20px;
+	font-weight: bold;
+	background-color: #F8F8F8;
+	background-image: none;
+}
+.sprint-backlog button {
+	font-size: 14px;
+	font-weight: bold;	
+	background-color: #FFF;
+	cursor: pointer;
+}
+
+#flash_message {
+ 	border: 1px solid #45A224;
+	background-color: #DAF0D1;
+	color: #000;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 10px;
 }
