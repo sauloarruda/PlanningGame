@@ -1,5 +1,29 @@
 jera:
-    name: Jera
+    name: Instrutor
     
 alfa:
-    name: Alfa
+    name: Equipe 1
+    
+equipe2:
+    name: Equipe 2
+
+equipe3:
+    name: Equipe 3
+    
+equipe4:
+    name: Equipe 4
+    
+equipe5:
+    name: Equipe 5
+    
+equipe6:
+    name: Equipe 6
+    
+equipe7:
+    name: Equipe 7
+    
+equipe8:
+    name: Equipe 8
+    
+equipe9:
+    name: Equipe 9

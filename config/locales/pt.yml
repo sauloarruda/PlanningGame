@@ -37,6 +37,8 @@ pt:
     previous_actual_technical_debt_tooltip: Débito técnico acumulado
     product_backlog: Product Backlog
     project: Projeto
+    project_fail: Meus Pêsames... Você não conseguiu finalizar o projeto, mas você pode tentar novamente! :)
+    project_success: Parabéns! Você finalizou o projeto com sucesso!
     real_story_points: FA. Funcionalidades Atual
     real_story_points_tooltip: Soma das histórias realizadas
     real_velocity: VA. Velocidade Atual

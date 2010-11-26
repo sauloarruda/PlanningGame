@@ -19,6 +19,7 @@ body {
 }
 #footer {
     background: url('/images/bg-footer.png') no-repeat;
+	width: 910px;
     height: 72px;
     padding: 25px;
     text-align: center;
@@ -28,7 +29,6 @@ body {
 
 .table {
     border: 1px solid #888;
-    margin-bottom: 20px;
 	width: 100%;
 }
 .table th, .table td {
@@ -196,9 +196,19 @@ span.tooltip {
 #flash_message {
  	border: 1px solid #45A224;
 	background-color: #DAF0D1;
-	color: #000;
+	color: #45A224;
 	font-weight: bold;
 	text-align: center;
 	padding: 5px;
 	margin-bottom: 10px;
+}
+
+#flash_error {
+ 	border: 1px solid #931F51;
+	background-color: #FFCDDF;
+	color: #931F51;
+	font-weight: bold;
+	text-align: center;
+	padding: 5px;
+	margin-bottom: 10px;	
 }

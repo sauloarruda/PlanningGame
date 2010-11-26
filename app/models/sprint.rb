@@ -2,7 +2,7 @@
 class Sprint < ActiveRecord::Base
   belongs_to :project
 
-  has_many :backlog_items, :class_name => "SprintBacklogItem",:order => :priority
+  has_many :backlog_items, :class_name => "SprintBacklogItem",:order => :priority, :dependent => :delete_all
   validates_size_of :backlog_items, :minimum => 1, :on => :update
   validates_presence_of :planned_defect_points, :project
   
@@ -35,7 +35,7 @@ class Sprint < ActiveRecord::Base
   
   # part of real velocity that may be used for story points
   def functional_velocity
-    # in case of one of values is null, may to return null
+    # in case of one of values is null, may to return null      
     self.real_velocity - (self.planned_defect_points + self.actual_technical_debt) rescue nil
   end
   
@@ -82,7 +82,7 @@ class Sprint < ActiveRecord::Base
   
   def avaiable_backlog_points
     backlog_points = BacklogItem.where("backlog_themes.backlog_id" => self.project.backlog_id).joins(:backlog_theme).sum(:points)
-    sprint_points = SprintBacklogItem.where("sprints.project_id" => self.project.id).joins(:backlog_item, :sprint).sum("backlog_items.points").to_i
+    sprint_points = SprintBacklogItem.where("sprints.project_id" => self.project.id).joins(:backlog_item, :sprint).where(:done => true).sum("backlog_items.points").to_i
     backlog_points.to_i - sprint_points.to_i
   end
   
@@ -111,20 +111,30 @@ class Sprint < ActiveRecord::Base
   
     def create_next_sprint
       if self.avaiable_backlog_points > 0
-        next_sprint = Sprint.new :number => self.number + 1, :project => self.project, :accumulated_defect_points => self.total_defects, :planned_defect_points => 0, :planned_story_points => 0
-        return next_sprint.save
+        if self.project.backlog.max_sprints == self.project.sprints.length
+          # no more sprints permitted
+          self.finish_project
+        else
+          next_sprint = Sprint.new :number => self.number + 1, :project => self.project, :accumulated_defect_points => self.total_defects, :planned_defect_points => 0, :planned_story_points => 0
+          return next_sprint.save
+        end
       else
-        self.project.end_date = Time.now
-        return self.project.save
+        self.finish_project
       end
     end
-  
+
+    def finish_project
+      self.project.end_date = Time.now
+      self.project.save
+    end
+
     def update_done_items
       done_points = 0
-      self.backlog_items.each do |item|
+      self.backlog_items.sort! {|x,y| x.priority <=> y.priority }.each do |item|
         item_points = item.backlog_item.points
-        item.done = (done_points + item_points) < self.real_velocity
+        item.done = (done_points + item_points) <= self.functional_velocity
         item.save! # TODO is this the better way?
+        return unless (item.done?) # stop on the first done
         done_points += item_points
       end
     end

@@ -14,6 +14,14 @@ class ProjectReport
     create_sprints
   end
   
+  def finished?
+    not @project.end_date.nil?
+  end
+  
+  def success?
+    @project.sprints.last.avaiable_backlog_points == 0
+  end
+  
   def name
     @project.backlog.name
   end

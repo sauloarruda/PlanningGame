@@ -35,7 +35,8 @@ function SprintBacklogUI(product_backlog, project_backlog, sprint_id) {
 		this.avaiable_product_backlog = Array()
 		for (var i in this.product_backlog) {
 			item = this.product_backlog[i]
-			if (this.project_backlog[item.id] == null)
+			if (this.project_backlog[item.id] == null || 
+				(!this.project_backlog[item.id].done && this.sprint_backlog[item.id] == null))
 				this.avaiable_product_backlog[this.avaiable_product_backlog.length] = item
 		}
 		
@@ -59,11 +60,12 @@ function SprintBacklogUI(product_backlog, project_backlog, sprint_id) {
 		var div = $(toId)
 		div.empty()
 		var theme = null
+		var i=0
 		for (var id in this.sprint_backlog) {
 			item = this.sprint_backlog[id]
 			div.append('<div id="item_'+item.id+'"></div>')
 			content = '<button onclick="remove_item('+item.id+')">×</button>' +
-				'<input type="hidden" name="backlog_items[][backlog_item_id]" value="'+item.id+'" /> ' +
+				'<input type="hidden" name="backlog_items[' + i++ +'][backlog_item_id]" value="'+item.id+'" /> ' +
 				'('+item.points+') ' + item.theme+' &raquo; ' +
 				'<span class="'+ ((this.project_backlog[id].done) ? 'item_done' : 'item_not_done') +'">' +
 				item.title+'</span></div>'

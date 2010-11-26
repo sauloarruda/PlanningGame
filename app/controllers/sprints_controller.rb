@@ -9,9 +9,12 @@ class SprintsController < ApplicationController
     @sprint = Sprint.find params[:id]
     if (@sprint.real_velocity.nil?)
       @sprint.attributes = params[:sprint]
-      params[:backlog_items].each do |item|
-        @sprint.backlog_items << SprintBacklogItem.new(item)  
-      end
+      @sprint.backlog_items.clear
+      params[:backlog_items].each do |priority, item|
+        @sprint.backlog_items << SprintBacklogItem.new(:backlog_item_id => item[:backlog_item_id],
+          :priority => priority)  
+      end unless (params[:backlog_items].nil?)
+      logger.debug @sprint.backlog_items.to_json
       saved = false
       if (params[:commit] == t('save_plan'))
         saved = @sprint.save

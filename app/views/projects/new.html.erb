@@ -12,7 +12,7 @@
 <% end -%>
 <p>
 	<%= f.label :team_id, t('team') %>
-	<%= f.collection_select :team_id, Team.all, :id, :name %>
+	<%= f.collection_select :team_id, Team.order(:name), :id, :name %>
 </p>
 <p>
 	<%= f.label :backlog_id, t('backlog') %>
