@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>
+			SprintBacklogUITest
+		</title>
+		<script src="../jquery.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="qunit.js"></script>
+		<script type="text/javascript" src="../sprint_backlog_ui.js"></script>
+		<script type="text/javascript">
+$(document).ready(function(){
+
+	var sbui
+	module("Create SprintBacklogUI", {
+		setup: function() {
+			sbui = new SprintBacklogUI([{"title":"Visualizar Perfil do Arquiteto","theme":"Arquiteto","points":2,"id":567492963},{"title":"Buscar Arquiteto","theme":"Arquiteto","points":3,"id":61873896},{"title":"Preencher Dados Gerais do Arquiteto","theme":"Arquiteto","points":3,"id":542149447},{"title":"Preencher Curr\u00edculo do Arquiteto","theme":"Arquiteto","points":3,"id":731456063},{"title":"Construir Show Room de Projetos do Arquiteto","theme":"Arquiteto","points":5,"id":787296314},{"title":"Visualizar Perfil da Empresa","theme":"Empresas de Arquitetura","points":2,"id":510360074},{"title":"Buscar Empresa de Arquitetura","theme":"Empresas de Arquitetura","points":3,"id":470307930},{"title":"Preencher Dados Gerais da Empresa","theme":"Empresas de Arquitetura","points":3,"id":832393412},{"title":"Construir Show Room de Projetos da Empresa","theme":"Empresas de Arquitetura","points":1,"id":947906800},{"title":"Visualizar Perfil do Fornecedor","theme":"Fornecedores","points":2,"id":209392792},{"title":"Preencher Dados Gerais do Fornecedor","theme":"Fornecedores","points":2,"id":699408949},{"title":"Buscar Fornecedor","theme":"Fornecedores","points":2,"id":804945112},{"title":"Cadastrar Produtos do Fornecedor","theme":"Fornecedores","points":5,"id":916701017},{"title":"Visualizar Perfil da Universidade","theme":"Universidades","points":2,"id":929974416}], [{"done":true,"id":738001566,"backlog_item_id":510360074},{"done":true,"id":897253599,"backlog_item_id":470307930},{"done":true,"id":463923796,"backlog_item_id":542149447},{"done":true,"id":435879345,"backlog_item_id":731456063},{"done":true,"id":250746411,"backlog_item_id":787296314},{"done":true,"id":746462366,"backlog_item_id":567492963},{"done":true,"id":33362239,"backlog_item_id":61873896},{"done":true,"id":29873461,"backlog_item_id":542149447},{"done":true,"id":868688057,"backlog_item_id":947906800},{"done":true,"id":380856021,"backlog_item_id":209392792},{"done":true,"id":551392750,"backlog_item_id":699408949},{"done":false,"id":692491138,"backlog_item_id":916701017}], 1)
+		}
+	});
+
+	test("instantiate SprintBacklogUI", function() {
+		ok(sbui != null)
+	});
+	
+	test("create arr_product_backlog hash", function() {
+		equal(sbui.product_backlog["567492963"].id, 567492963)
+		// TODO resolve order problem on webkit
+		//for (var i in sbui.product_backlog) {
+		//	equal(sbui.product_backlog[i].id, 567492963)
+		//	break
+		//}
+	});
+
+});
+		</script>
+	</head>
+	<body>
+		<h1 id="qunit-header">
+			SprintBacklogUI Test
+		</h1>
+		<h2 id="qunit-banner"></h2>
+		<div id="qunit-testrunner-toolbar"></div>
+		<h2 id="qunit-userAgent"></h2>
+		<ol id="qunit-tests"></ol>
+		<div id="qunit-fixture">
+			test markup, will be hidden
+		</div>
+	</body>
+</html>
