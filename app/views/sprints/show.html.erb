@@ -11,10 +11,14 @@
 <div class="report">
 	<h3><%= t('planning')%></h3>
 	<%= render :partial => "input_text", :locals => { :field => :planned_story_points } %>
+	<% if (@sprint.previous.nil? or @sprint.previous.total_defects == 0) -%>
+	<%= render(:partial => "input_text", :locals => { :field => :planned_defect_points, :class_id => :sprint_planned_defect_points }) %>	
+	<% else %>
 	<p class="planned_defect_points">
 		<label><%= t('planned_defect_points')%><br/><span class="tooltip"><%= t('planned_defect_points_tooltip')%></span></label>
-		<%= f.text_field :planned_defect_points, :onkeyup => 'update_plan()' %>
-	</p>
+		<%= f.select :planned_defect_points, (0..@sprint.previous.total_defects).to_a, {}, :onchange => 'update_plan()' %>
+	</p>	
+	<% end -%>
 	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>
 	<%= render :partial => "input_text", :locals => { :field => :planned_velocity } %>
 </div>
@@ -52,6 +56,7 @@
 	<%= f.submit t('save_and_execute_sprint'), :class => "btn"%> 
 	<%= t('or')%> <%= link_to t('cancel'), @sprint.project%></p>
 	<% else %>
+	<%= f.submit t('next_sprint'), { :onclick => "location.href='#{url_for(:action => :show, :id => @sprint.next.id)}'; return false", :class => 'btn' } unless @sprint.next.nil? %>
 	<%= link_to t('return_to_project'), @sprint.project%></p>
 	<% end -%>
 <% end -%>

@@ -126,7 +126,7 @@ div.report label {
 	width: 160px;
 	display: inline-block;
 }
-div.report input {
+div.report input, div.report select {
 	font-size: 13px;
 	width: 30px;
 	text-align: right;
@@ -137,8 +137,9 @@ div.report input.disabled {
 	background-color: #F0F0F0;
 	padding: 5px;
 }
-div.report p.planned_defect_points input {
-	border: 1px solid;
+div.report p.planned_defect_points select {
+	border: 1px solid #000;
+	width: 45px;
 	padding: 5px;
 }
 div.report p.planned_velocity input {

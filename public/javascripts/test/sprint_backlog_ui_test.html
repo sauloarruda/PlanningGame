@@ -9,13 +9,15 @@
 		<link rel="stylesheet" href="qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="qunit.js"></script>
 		<script type="text/javascript" src="../sprint_backlog_ui.js"></script>
+		<script type="text/javascript" src="fixtures.js"></script>
 		<script type="text/javascript">
 $(document).ready(function(){
 
 	var sbui
-	module("Create SprintBacklogUI", {
+	module("SprintBacklogUI", {
 		setup: function() {
-			sbui = new SprintBacklogUI([{"title":"Visualizar Perfil do Arquiteto","theme":"Arquiteto","points":2,"id":567492963},{"title":"Buscar Arquiteto","theme":"Arquiteto","points":3,"id":61873896},{"title":"Preencher Dados Gerais do Arquiteto","theme":"Arquiteto","points":3,"id":542149447},{"title":"Preencher Curr\u00edculo do Arquiteto","theme":"Arquiteto","points":3,"id":731456063},{"title":"Construir Show Room de Projetos do Arquiteto","theme":"Arquiteto","points":5,"id":787296314},{"title":"Visualizar Perfil da Empresa","theme":"Empresas de Arquitetura","points":2,"id":510360074},{"title":"Buscar Empresa de Arquitetura","theme":"Empresas de Arquitetura","points":3,"id":470307930},{"title":"Preencher Dados Gerais da Empresa","theme":"Empresas de Arquitetura","points":3,"id":832393412},{"title":"Construir Show Room de Projetos da Empresa","theme":"Empresas de Arquitetura","points":1,"id":947906800},{"title":"Visualizar Perfil do Fornecedor","theme":"Fornecedores","points":2,"id":209392792},{"title":"Preencher Dados Gerais do Fornecedor","theme":"Fornecedores","points":2,"id":699408949},{"title":"Buscar Fornecedor","theme":"Fornecedores","points":2,"id":804945112},{"title":"Cadastrar Produtos do Fornecedor","theme":"Fornecedores","points":5,"id":916701017},{"title":"Visualizar Perfil da Universidade","theme":"Universidades","points":2,"id":929974416}], [{"done":true,"id":738001566,"backlog_item_id":510360074},{"done":true,"id":897253599,"backlog_item_id":470307930},{"done":true,"id":463923796,"backlog_item_id":542149447},{"done":true,"id":435879345,"backlog_item_id":731456063},{"done":true,"id":250746411,"backlog_item_id":787296314},{"done":true,"id":746462366,"backlog_item_id":567492963},{"done":true,"id":33362239,"backlog_item_id":61873896},{"done":true,"id":29873461,"backlog_item_id":542149447},{"done":true,"id":868688057,"backlog_item_id":947906800},{"done":true,"id":380856021,"backlog_item_id":209392792},{"done":true,"id":551392750,"backlog_item_id":699408949},{"done":false,"id":692491138,"backlog_item_id":916701017}], 1)
+			var sprint_id = 2
+			sbui = new SprintBacklogUI(product_backlog, project_backlog, sprint_id)
 		}
 	});
 
@@ -23,14 +25,92 @@ $(document).ready(function(){
 		ok(sbui != null)
 	});
 	
-	test("create arr_product_backlog hash", function() {
-		equal(sbui.product_backlog["567492963"].id, 567492963)
-		// TODO resolve order problem on webkit
-		//for (var i in sbui.product_backlog) {
-		//	equal(sbui.product_backlog[i].id, 567492963)
-		//	break
-		//}
+	test("render product backlog", function() {
+		sbui.render_product_backlog('#product_backlog_div')
+		
+		// options
+		var options = get_options()
+		equal(options.length, 36)
+		equal(options[0].text, '(2) Preencher Dados Gerais do Fornecedor')
+		equal(options[1].text, '(2) Buscar Fornecedor')
+		equal(options[2].text, '(5) Cadastrar Produtos do Fornecedor')
+		equal(options[3].text, '(2) Visualizar Perfil da Universidade')
+		equal(options[35].text, '(3) Moderar F\u00f3rum')
+		
+		// optgroups
+		var groups = get_groups()
+		equal(groups.length, 11)
+		equal(groups[0].label, 'Fornecedores')
+		equal(groups[1].label, 'Universidades')
+		equal(groups[2].label, 'Portal')
+		equal(groups[10].label, 'F\u00f3rum de Discuss\u00e3o')
 	});
+	
+	test("render sprint backlog", function() {
+		sbui.render_sprint_backlog("#sprint_backlog_div")
+		
+		var items = get_items()
+		equal(items.length, 4)
+		equal(items[0].innerHTML, 'Buscar Empresa de Arquitetura')
+		equal(items[1].innerHTML, 'Preencher Dados Gerais da Empresa')
+		equal(items[2].innerHTML, 'Construir Show Room de Projetos da Empresa')
+		equal(items[3].innerHTML, 'Visualizar Perfil do Fornecedor')
+	});
+	
+	test("add", function() {
+		$('#' + sbui.select_tag_id).val(699408949)
+		sbui.add("#product_backlog_div", "#sprint_backlog_div")
+	
+		var options = get_options()
+		equal(options.length, 35)
+		equal(options[0].text, '(2) Buscar Fornecedor')
+	
+		var items = get_items()
+		equal(items.length, 5)
+		equal(items[4].innerHTML, 'Preencher Dados Gerais do Fornecedor')
+	
+	});
+	
+	test("remove", function() {
+		sbui.remove(470307930, "#product_backlog_div", "#sprint_backlog_div")		
+		
+		var options = get_options()
+		equal(options.length, 36)
+		equal(options[0].text, '(3) Buscar Empresa de Arquitetura')
+	
+		var items = get_items()
+		equal(items.length, 4)
+		equal(items[0].innerHTML, 'Preencher Dados Gerais da Empresa')		
+	});
+	
+	test("story_points", function() {
+		sbui.render_product_backlog('#product_backlog_div')
+		sbui.render_sprint_backlog("#sprint_backlog_div")
+		equal(sbui.story_points(), 15)
+	});
+
+	test("backlog_points", function() {
+		sbui.render_product_backlog('#product_backlog_div')
+		sbui.render_sprint_backlog("#sprint_backlog_div")
+		equal(sbui.backlog_points(), 85)
+	});
+	
+	// obtains select options	
+	function get_options() {
+		var el = $("#" + sbui.select_tag_id)
+		ok(el != null)
+		return el[0].options
+	}
+	
+	// obtains select optgroups
+	function get_groups() {
+		return $("optgroup")
+	}
+	
+	// obtains sprint backlog items
+	function get_items() {
+		return $('#sprint_backlog_div div span.item_not_done')
+	}
 
 });
 		</script>
@@ -46,5 +126,7 @@ $(document).ready(function(){
 		<div id="qunit-fixture">
 			test markup, will be hidden
 		</div>
+		<div id="product_backlog_div"></div>
+		<div id="sprint_backlog_div"></div>
 	</body>
 </html>

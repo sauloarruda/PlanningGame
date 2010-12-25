@@ -65,6 +65,13 @@ class Sprint < ActiveRecord::Base
     index = Sprint::sprint_index(self.number, sprints)
     sprints[index-1] unless index.nil? or index == 0
   end
+  
+  # next sprint or null if last
+  def next
+    sprints = self.project.sprints
+    index = Sprint::sprint_index(self.number, sprints)
+    sprints[index+1] unless index.nil? or index == sprints.size
+  end
     
   # the diference between planned and real, if positive, there was unused points, if negative, the
   # planned was higher than real and not all backlog itens where done
@@ -116,6 +123,7 @@ class Sprint < ActiveRecord::Base
           self.finish_project
         else
           next_sprint = Sprint.new :number => self.number + 1, :project => self.project, :accumulated_defect_points => self.total_defects, :planned_defect_points => 0, :planned_story_points => 0
+          #self.project.sprints << next_sprint
           return next_sprint.save
         end
       else
