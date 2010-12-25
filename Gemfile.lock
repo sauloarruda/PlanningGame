@@ -54,6 +54,7 @@ GEM
     flog (2.5.0)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
+    hanoi (0.0.3)
     hirb (0.3.5)
     hoe (2.7.0)
       rake (>= 0.8.7)
@@ -148,6 +149,7 @@ PLATFORMS
 
 DEPENDENCIES
   autotest
+  hanoi
   metric_fu (~> 2.0.1)
   mysql2
   rails (= 3.0.3)
