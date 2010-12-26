@@ -48,11 +48,11 @@ describe ProjectReport do
   end
 
   it "should get real story points field" do
-    assert_field("real_story_points", [16, 13, nil, nil, nil, nil, nil, nil], 29)
+    assert_field("real_story_points", [18, 17, nil, nil, nil, nil, nil, nil], 35)
   end
   
   it "should get balance field" do
-    assert_field("balance", [2, -5, nil, nil, nil, nil, nil, nil], -3)
+    assert_field("balance", [2, -1, nil, nil, nil, nil, nil, nil], 1)
   end
 
   it "should get generated defect points field" do

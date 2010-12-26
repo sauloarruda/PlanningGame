@@ -5,6 +5,6 @@ describe Team do
   
   it "should find by id" do
     team = Team.find_by_id(teams(:jera))
-    team.name.should == 'Jera'
+    team.name.should == 'Instrutor'
   end
 end

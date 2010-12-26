@@ -18,7 +18,7 @@ describe Sprint do
       @sprint.backlog_items << SprintBacklogItem.new({
         :backlog_item => backlog_items(:buscar_arquiteto), :priority => 1 })
       @sprint.save!
-      @sprint.planned_story_points.should eql(21)
+      @sprint.planned_story_points.should eql(23)
     end
   
     it "should not execute not valid sprint" do
@@ -30,7 +30,7 @@ describe Sprint do
     it "should execute planning" do
       RandomSprintExecution.stub!(:roll_dice).and_return(4,8)
       @sprint.execute
-      @sprint.planned_story_points.should eql(16)
+      @sprint.planned_story_points.should eql(18)
       @sprint.real_velocity.should eql(18)
       @sprint.generated_defect_points.should eql(2)
       @sprint.generated_technical_debt.should eql(1)
@@ -68,7 +68,7 @@ describe Sprint do
     end
     
     it "should calculate real story points" do
-      @sprint.real_story_points.should eql(16)
+      @sprint.real_story_points.should eql(18)
     end
   
     it "should calculate positive balance" do
@@ -112,7 +112,7 @@ describe Sprint do
     end
 
     it "should calculate real story points" do
-      @sprint.real_story_points.should eql(13)
+      @sprint.real_story_points.should eql(17)
     end
 
     it "should calculate actual technical debt" do
@@ -120,7 +120,7 @@ describe Sprint do
     end
     
     it "should calculate negative balance" do
-      @sprint.balance.should eql(-5)
+      @sprint.balance.should eql(-1)
     end
     
     it "should calculate functional velocity" do
