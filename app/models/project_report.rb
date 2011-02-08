@@ -38,7 +38,7 @@ private
   def initialize_totals
     ProjectReport::EXPOSED_FIELDS.each do |method_name|
       eval("@total_#{method_name} = 0")
-      eval("self.class.class_eval { attr_accessor :total_#{method_name} }")
+      eval("self.class.class_eval { attr_reader :total_#{method_name}; attr_reader :avg_#{method_name};  }")
     end
   end
   
@@ -48,6 +48,7 @@ private
       sprint_report = SprintReport.new(self, number)
       @sprints << calculate_total(sprint_report)
     end
+    calculate_avgs()
   end
   
   def calculate_total(sprint_report)
@@ -56,6 +57,18 @@ private
     end
     sprint_report
   end
+  
+  def calculate_avgs()
+    ProjectReport::EXPOSED_FIELDS.each do |method_name|
+      sprints_count = @project.sprints.size
+      eval("sprints_count -= 1 if @sprints[sprints_count-1].#{method_name}.nil?")
+      eval("@avg_#{method_name} = avg(@total_#{method_name}, sprints_count)")
+    end
+  end
+
+  def avg(sum, cont)
+    sum.to_f/cont.to_f
+  end 
 
 end
 
