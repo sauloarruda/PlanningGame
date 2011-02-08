@@ -16,7 +16,7 @@
 	<% else %>
 	<p class="planned_defect_points">
 		<label><%= t('planned_defect_points')%><br/><span class="tooltip"><%= t('planned_defect_points_tooltip')%></span></label>
-		<%= f.select :planned_defect_points, (0..@sprint.previous.total_defects).to_a, {}, :onchange => 'update_plan()' %>
+		<%= f.select :planned_defect_points, (0..@sprint.previous.total_defects).to_a, {}, :onchange => 'update_plan()', :disabled => !@sprint.real_velocity.nil? %>
 	</p>	
 	<% end -%>
 	<%= render :partial => "input_text", :locals => { :field => :actual_technical_debt } %>

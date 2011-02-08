@@ -111,6 +111,7 @@ class Sprint < ActiveRecord::Base
         puts self.errors.to_json
       end
     end
+    self.project.sprints.reload
     saved
   end
   
@@ -124,7 +125,7 @@ class Sprint < ActiveRecord::Base
         else
           next_sprint = Sprint.new :number => self.number + 1, :project => self.project, :accumulated_defect_points => self.total_defects, :planned_defect_points => 0, :planned_story_points => 0
           #self.project.sprints << next_sprint
-          return next_sprint.save
+          next_sprint.save
         end
       else
         self.finish_project
@@ -146,13 +147,13 @@ class Sprint < ActiveRecord::Base
         done_points += item_points
       end
     end
-
+    
     def generate_random_data
       data = RandomSprintExecution.random_data
       self.real_velocity = self.initial_velocity + (data[:velocity])
       self.generated_defect_points = data[:defects]
       self.generated_technical_debt = RandomSprintExecution.technical_debt(
-        self.accumulated_defect_points - self.planned_defect_points + self.generated_defect_points)
+      self.accumulated_defect_points - self.planned_defect_points + self.generated_defect_points)
     end
   
   private  

@@ -18,5 +18,5 @@ namespace :test do
     sources_directory = File.expand_path(File.dirname(__FILE__) + "/src")
 
     t.setup(sources_directory, test_cases, browsers)
-  end
+  end rescue {}
 end
