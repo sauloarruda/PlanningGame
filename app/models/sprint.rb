@@ -110,8 +110,8 @@ class Sprint < ActiveRecord::Base
         self.errors.add(:real_velocity, "already was executed")
         puts self.errors.to_json
       end
+      self.project.sprints.reload
     end
-    self.project.sprints.reload
     saved
   end
   
