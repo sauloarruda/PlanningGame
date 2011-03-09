@@ -158,6 +158,7 @@ div.product-backlog, div.sprint-backlog {
 	color: #999
 }
 .item_not_done {
+	color: red;
 }
 .space {
 	height: 28px;

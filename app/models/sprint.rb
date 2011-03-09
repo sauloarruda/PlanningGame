@@ -93,6 +93,9 @@ class Sprint < ActiveRecord::Base
     backlog_points.to_i - sprint_points.to_i
   end
   
+  def executed?
+    self.real_velocity != nil
+  end
   
   def execute
     saved = false

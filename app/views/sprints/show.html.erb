@@ -78,7 +78,7 @@ $(document).ready(function() {
 		dataType: "json",
 		async: false
 	}).responseText)
-	sprint_backlog_ui = new SprintBacklogUI(product_backlog_json, sprint_backlog_json, <%= @sprint.id %>)
+	sprint_backlog_ui = new SprintBacklogUI(product_backlog_json, sprint_backlog_json, <%= @sprint.id %>, <%= @sprint.executed? %>)
 	sprint_backlog_ui.render_product_backlog($('#product_backlog_div'))
 	sprint_backlog_ui.render_sprint_backlog($('#sprint_backlog_div'))
 })
