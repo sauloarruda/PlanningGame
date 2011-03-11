@@ -127,9 +127,7 @@ class Sprint < ActiveRecord::Base
         end
       else
         self.errors.add(:real_velocity, "already was executed")
-        puts self.errors.to_json
       end
-      self.project.sprints.reload
     end
     saved
   end
@@ -137,7 +135,8 @@ class Sprint < ActiveRecord::Base
   protected
   
     def create_next_sprint
-      if self.avaiable_backlog_points > 0
+      logger.debug "+++++++++++ avaiable_backlog_points = " + avaiable_backlog_points.to_s
+      if self.avaiable_backlog_points - self.real_story_points > 0
         if self.project.backlog.max_sprints == self.project.sprints.length
           # no more sprints permitted
           self.finish_project
