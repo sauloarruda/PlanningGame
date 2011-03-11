@@ -43,7 +43,7 @@
 <div class="product-backlog">
 	<h3><%= t('product_backlog')%> (<span id="product_backlog_points"><%= @sprint.avaiable_backlog_points %></span>)</h3>
 	<div id="product_backlog_div"></div>
-	<button onclick="add_item(); return false" class="btn"><%= t('add') %></button>
+<%= raw('<button onclick="add_item(); return false" class="btn">' + t('add') + '</button>') if not @sprint.executed? %>
 </div>
 <div class="sprint-backlog">
 	<h3><%= t('sprint_backlog')%> (<span id="sprint_backlog_points"><%= @sprint.planned_story_points %></span>)</h3>

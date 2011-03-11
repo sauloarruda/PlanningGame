@@ -138,6 +138,7 @@ GEM
       sexp_processor (~> 3.0)
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
+    selenium-client (1.2.18)
     sexp_processor (3.0.5)
     thor (0.14.4)
     treetop (1.4.9)
@@ -156,3 +157,4 @@ DEPENDENCIES
   rcov (~> 0.9.9)
   rspec-rails (~> 2.1.0)
   ruby-debug
+  selenium-client

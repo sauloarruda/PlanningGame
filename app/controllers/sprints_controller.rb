@@ -23,7 +23,7 @@ class SprintsController < ApplicationController
       end
       flash[:message] = t('saved_successfuly') if (saved) 
     end
-    render :action => "show"
+    redirect_to :action => "show"
   end
   
   def product_backlog

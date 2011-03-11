@@ -37,4 +37,5 @@ group :test, :development do
   gem "rcov", "~> 0.9.9"
   gem "metric_fu", "~> 2.0.1"
   gem "hanoi"
+  gem "selenium-client"
 end

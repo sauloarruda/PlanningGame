@@ -44,7 +44,7 @@ pt:
     real_story_points_tooltip: Soma das histórias realizadas
     real_velocity: VA. Velocidade Atual
     real_velocity_tooltip: Velocidade da sprint executada
-    return_to_project: « Voltar ao Projeto
+    return_to_project: < Voltar ao Projeto
     saved_successfuly: Gravado com sucesso!
     save_and_execute_sprint: Gravar e Executar Sprint
     save_plan: Gravar Plano

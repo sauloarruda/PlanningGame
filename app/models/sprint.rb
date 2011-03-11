@@ -29,7 +29,7 @@ class Sprint < ActiveRecord::Base
         # FIXME @sauloarruda self.backlog_itens.done not working
         points += item.backlog_item.points if (item.done?) 
       end
-      points
+      points + compute_sprint_extra_points
     end
   end
   
@@ -88,9 +88,25 @@ class Sprint < ActiveRecord::Base
   end
   
   def avaiable_backlog_points
-    backlog_points = BacklogItem.where("backlog_themes.backlog_id" => self.project.backlog_id).joins(:backlog_theme).sum(:points)
-    sprint_points = SprintBacklogItem.where("sprints.project_id" => self.project.id).joins(:backlog_item, :sprint).where(:done => true).sum("backlog_items.points").to_i
-    backlog_points.to_i - sprint_points.to_i
+    backlog_points = BacklogItem.joins(:backlog_theme).where('backlog_themes.backlog_id' => self.project.backlog_id).sum('points')
+    project_backlog.each do |item|
+      if item.sprint_id != self.id
+        if item.done 
+          backlog_points -= item.backlog_item.points 
+        end
+      else
+        if (self.executed?)
+          backlog_points -= item.backlog_item.points if item.done
+        else
+          backlog_points -= item.backlog_item.points unless item.done
+        end
+      end
+    end
+    backlog_points
+    #backlog_points = BacklogItem.where("backlog_themes.backlog_id" => self.project.backlog_id).joins(:backlog_theme).sum(:points)
+    #sprint_points = SprintBacklogItem.where("sprints.project_id" => self.project_id).joins(:backlog_item, :sprint).where(:done => true).sum("backlog_items.points")
+    #extra_points = compute_avaiable_extra_points
+    #backlog_points.to_i - sprint_points.to_i + extra_points.to_i
   end
   
   def executed?
@@ -144,6 +160,7 @@ class Sprint < ActiveRecord::Base
       done_points = 0
       self.backlog_items.sort! {|x,y| x.priority <=> y.priority }.each do |item|
         item_points = item.backlog_item.points
+        item_points += compute_extra_points(item)
         item.done = (done_points + item_points) <= self.functional_velocity
         item.save! # TODO is this the better way?
         return unless (item.done?) # stop on the first done
@@ -164,7 +181,45 @@ class Sprint < ActiveRecord::Base
       self.planned_story_points = 0
       self.backlog_items.each do |item|
         self.planned_story_points += item.backlog_item.points
+        self.planned_story_points += compute_extra_points(item)
       end
+    end
+    
+    def compute_extra_points(item)
+      extra_ponts = 0
+      project_backlog.each do |project_item|
+        if (project_item.backlog_item_id == item.backlog_item_id and project_item.sprint_id != item.sprint_id and not project_item.done)
+          extra_ponts += 1
+        end
+      end
+      extra_ponts
+    end
+    
+    def compute_sprint_extra_points
+      if (@sprint_extra_ponts.nil?)
+        item_points = {}
+        project_backlog.each do |project_item|
+          backlog_item = project_item.backlog_item
+          if project_item.sprint_id != self.id
+            unless project_item.done
+              item_points[backlog_item] = 0 if (item_points[backlog_item].nil?) 
+              item_points[backlog_item] = item_points[backlog_item] + 1
+            end
+          else
+            item_points.delete(project_item)
+          end
+        end
+        @sprint_extra_ponts = 0
+        self.backlog_items.each do |sprint_backlog_item|
+          backlog_item = sprint_backlog_item.backlog_item
+          @sprint_extra_ponts += item_points[backlog_item] if item_points.has_key?(backlog_item) and sprint_backlog_item.done?
+        end
+      end
+      @sprint_extra_ponts
+    end
+    
+    def project_backlog
+      @project_backlog ||= SprintBacklogItem.all(self.project)
     end
     
     def Sprint::sprint_index(number, sprints)

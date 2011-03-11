@@ -12,7 +12,10 @@ function SprintBacklogUI(product_backlog, project_backlog, sprint_id, executed) 
 		
 		div = $(toId)
 		div.empty()
-		div.append('<select id="'+this.select_tag_id+'" size="12" ondblclick="add_item()"></select>')
+		select = '<select id="'+this.select_tag_id+'" size="12" '
+		if (!executed) select += 'ondblclick="add_item()">'
+		select += '</select>'
+		div.append(select)
 		var select = $('#' + this.select_tag_id)
 		var theme = null
 		for (var i=0; i<this.avaiable_product_backlog.length; i++) {
@@ -39,18 +42,20 @@ function SprintBacklogUI(product_backlog, project_backlog, sprint_id, executed) 
 		var i=0
 		for (var id in this.sprint_backlog) {
 			var item = this.sprint_backlog[id]
-			div.append('<div id="item_'+item.id+'"></div>')
-			var content = '<button onclick="remove_item('+item.id+')">×</button>' +
-				'<input type="hidden" name="backlog_items[' + i++ +'][backlog_item_id]" value="'+item.id+'" /> ' +
-				'('+item.points
+			div.append('<div class="item_div" id="item_'+item.id+'"></div>')
+			var content = ''
+			if (!this.executed) content += '<button onclick="remove_item('+item.id+')">×</button>'
+			content += '<input type="hidden" name="backlog_items[' + i++ +'][backlog_item_id]" ' + 
+				'value="'+item.id+'" /> ('+item.points
 			if (item.extra_points != null) {
 				content += '+' + item.extra_points
 			}
 			var project_backlog_items = this.get_project_backlog_item(item.id)
 			var done = (project_backlog_items.length > 0 && project_backlog_items[project_backlog_items.length-1].done)
 			content += ') ' + item.theme+' &raquo; '
-			content += '<span class="item '+ (executed && done ? 'item_done' : 'item_not_done') +'">' +
-				item.title+'</span>'
+			content += '<span class="item '
+			if (this.executed) content += (done) ? 'item_done' : 'item_not_done'
+			content += '">' + item.title+'</span>'
 			content += '</div>'
 			$("#item_" + item.id).html(content)
 		}

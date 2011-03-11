@@ -65,6 +65,9 @@ label {
 	width: 100px;
 	display: inline-block;
 }
+.item_div {
+	line-height: 20px;
+}
 
 .btn {
     background: url('/images/btn.png') no-repeat;
