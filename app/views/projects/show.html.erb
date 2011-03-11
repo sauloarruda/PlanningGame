@@ -1,4 +1,4 @@
-<h1><%= @project.team %> - <%= @project.name %></h1>
+<h1>@<%= link_to @project.team, teams_path(@project.team) %> - <%= @project.name %></h1>
 <table class="table" border="0" cellspacing="0" cellpadding="0">
 	<thead>
 	<tr>

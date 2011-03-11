@@ -1,0 +1,22 @@
+<h1><%= "#{t('projects_for')} @#{@team.name}" %></h1>
+
+<table class="table" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<th><%= t('date') %></th>
+		<th><%= t('backlog') %></th>
+		<th><%= t('finished') %></th>
+	</tr>
+<% @team.projects.each do |project| %>
+	<tr>
+		<td><%= link_to l(project.created_at), project %></td>
+		<td><%= project.backlog.name %></td>
+		<td><% unless (project.finished?) %>
+				<%= t('not-finished') %>
+			<% else %> 
+				<%= l(project.end_date) %>
+				<%= raw(project.success? ? t('success') : t('fail')) %>
+			<% end %>
+		</td>
+	</tr>
+<% end %>
+</table>

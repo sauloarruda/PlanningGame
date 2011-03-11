@@ -1,5 +1,5 @@
 <%= javascript_include_tag "jquery.min", "sprint_backlog_ui" %>
-<h1><%= @sprint.project.team.name %> - <%= @sprint.project.backlog.name %> #<%= @sprint.number %></h1>
+<h1>@<%= link_to @sprint.project.team.name, teams_path(@sprint.project.team.name) %> - <%= @sprint.project.backlog.name %> #<%= @sprint.number %></h1>
 
 <% form_for @sprint do |f| -%>
 <div class="report">

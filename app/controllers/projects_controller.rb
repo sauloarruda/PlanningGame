@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   end
   
   def create
-    @project = Project.new params[:project]
+    team = Team.find_or_create_by_name(:name => params[:team_name])
+    @project = Project.new params[:project].merge(:team => team)
     if @project.save
       redirect_to :action => :show, :id => @project.id 
     else

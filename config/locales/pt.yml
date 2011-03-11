@@ -11,8 +11,11 @@ pt:
     cancel: Cancelar
     create: Criar
     creating: Criando
+    date: Data
     executed: Executado
+    fail: <img src="/images/fail.png" />
     feedback: Feedback
+    finished: Finalização
     functional_velocity: VF. Velocidade Funcional
     functional_velocity_tooltip: VF = VA - (DP + BP)
     generated_defect_points: BA. Defeitos Gerados
@@ -23,6 +26,7 @@ pt:
     last_sprint: Último Sprint
     next_sprint: Próximo Sprint
     new: Novo
+    not-finished: Não finalizado
     or: ou
     planned_defect_points: BP. Pontos Defeitos
     planned_defect_points_tooltip: Qtde de defeitos planejados 
@@ -38,6 +42,7 @@ pt:
     previous_actual_technical_debt_tooltip: Débito técnico acumulado
     product_backlog: Product Backlog
     project: Projeto
+    projects_for: Projetos de 
     project_fail: Meus Pêsames... Você não conseguiu finalizar o projeto, mas você pode tentar novamente! :)
     project_success: Parabéns! Você finalizou o projeto com sucesso!
     real_story_points: FA. Funcionalidades Atual
@@ -51,10 +56,15 @@ pt:
     separator: "," # fraction separator
     sprint_backlog: Sprint Backlog
     sprints: Sprints
-    team: Equipe
+    success: <img src="/images/success.png" />
+    team: Usuário do Twitter
     terms_of_service: Termos do Serviço
     total: Total
     total_defects: BT. Total de Defeitos
     total_defects_tooltip: TD = (B0 - BP) + BA
     generated_technical_debt: DT. Débito Técnico
     generated_technical_debt_tooltip: Débito técnico gerado
+    
+    time:
+        formats:
+            default: "%d/%m/%Y às %H:%M"

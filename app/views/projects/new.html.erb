@@ -11,8 +11,8 @@
   </div>
 <% end -%>
 <p>
-	<%= f.label :team_id, t('team') %>
-	<%= f.collection_select :team_id, Team.order(:name), :id, :name %>
+	<%= f.label :team_name, t('team') %>
+	@<%= text_field_tag :team_name %>
 </p>
 <p>
 	<%= f.label :backlog_id, t('backlog') %>

@@ -6,6 +6,7 @@ PlanningGame::Application.routes.draw do
     end
   end
   root :to => "projects#new"
+  match '/@:id' => 'teams#show', :as => "teams"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

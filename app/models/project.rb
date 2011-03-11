@@ -11,6 +11,14 @@ class Project < ActiveRecord::Base
     self.created_at
   end
   
+  def finished?
+    not self.end_date.nil?
+  end
+  
+  def success?
+    self.sprints.last.avaiable_backlog_points == 0
+  end
+  
   private
   def create_first_sprint
     self.sprints.build :number => 1, :accumulated_defect_points => 0, :planned_defect_points => 0, :planned_story_points => 0
