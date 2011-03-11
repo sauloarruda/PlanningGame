@@ -12,11 +12,22 @@
 <% end -%>
 <p>
 	<%= f.label :team_name, t('team') %>
-	@<%= text_field_tag :team_name, params['team'] %>
+	@<%= text_field_tag :team_name, params['team'], :class => "required" %>
 </p>
 <p>
 	<%= f.label :backlog_id, t('backlog') %>
-	<%= f.collection_select :backlog_id, Backlog.all, :id, :name %>
+	<%= f.collection_select :backlog_id, Backlog.all, :id, :name, :class => "required" %>
 </p>
 <p><%= f.submit t("create"), :disable_with => t('creating'), :class => "btn" %></p>
 <% end -%>
+<style type="text/css">
+label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+</style>
+<%= javascript_include_tag 'jquery.min' %>
+<%= javascript_include_tag 'jquery.validate.pack' %>
+<%= javascript_include_tag 'localized/messages_ptbr' %>
+<script>
+  $(document).ready(function(){
+    $("#new_project").validate();
+  });
+</script>
