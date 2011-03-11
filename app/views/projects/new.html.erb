@@ -12,11 +12,11 @@
 <% end -%>
 <p>
 	<%= f.label :team_name, t('team') %>
-	@<%= text_field_tag :team_name %>
+	@<%= text_field_tag :team_name, params['team'] %>
 </p>
 <p>
 	<%= f.label :backlog_id, t('backlog') %>
 	<%= f.collection_select :backlog_id, Backlog.all, :id, :name %>
 </p>
-<p><%= f.submit t("create"), :disable_with => t('creating'), :class => "btn" %>
+<p><%= f.submit t("create"), :disable_with => t('creating'), :class => "btn" %></p>
 <% end -%>
