@@ -5,6 +5,7 @@
 		<th><%= t('date') %></th>
 		<th><%= t('backlog') %></th>
 		<th><%= t('finished') %></th>
+		<th><%= t('score')%></th>
 	</tr>
 <% @team.projects.each do |project| %>
 	<tr>
@@ -17,6 +18,7 @@
 				<%= raw(project.success? ? t('success') : t('fail')) %>
 			<% end %>
 		</td>
+		<td><%= project.score %></td>
 	</tr>
 <% end %>
 </table>

@@ -37,6 +37,8 @@ pt:
     planned_velocity_tooltip: TP = DP + BP + FP
     planning: Planejamento
     planning_game: PlanningGame
+    score: Pontuação
+    score_tooltip: Sua pontuação!
     previous_total_defects: B0. Defeitos Pendentes
     previous_total_defects_tooltip: Defeitos do último sprint
     previous_actual_technical_debt: D0. Débito Técnico

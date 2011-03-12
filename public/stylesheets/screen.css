@@ -114,7 +114,7 @@ tr.balance td, tr.balance th.tooltip {
 .initial_velocity.sprint_1, .accumulated_defect_points.sprint_1, .actual_technical_debt.sprint_1, .planned_defect_points.sprint_1, .generated_defect_points {
 	background-color: #D5D5D5;
 }
-.total, .average {
+.total, .average, .score {
 	color: black;
 	font-weight: bold;
  	background-color: #CEE0FF !important;

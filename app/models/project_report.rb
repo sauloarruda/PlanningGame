@@ -6,7 +6,7 @@ class ProjectReport
   # fields to be exposed by SprintReport delegator
   ProjectReport::EXPOSED_FIELDS = [:initial_velocity, :accumulated_defect_points, :actual_technical_debt,
     :planned_defect_points, :planned_story_points, :planned_velocity, :real_velocity, :functional_velocity,
-    :real_story_points, :balance, :generated_defect_points, :total_defects, :generated_technical_debt]
+    :real_story_points, :balance, :generated_defect_points, :total_defects, :generated_technical_debt, :score]
     
   def initialize(project_id)
     @project = Project.find_by_id(project_id)

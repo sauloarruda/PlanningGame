@@ -11,6 +11,16 @@ class Project < ActiveRecord::Base
     self.created_at
   end
   
+  def finish
+    self.end_date = Time.now
+    score = 0
+    self.sprints.each do |sprint|
+      score += sprint.score unless sprint.score.nil?
+    end
+    write_attribute(:score, score)
+    self.save!
+  end
+  
   def finished?
     not self.end_date.nil?
   end

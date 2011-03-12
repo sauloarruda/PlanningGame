@@ -121,6 +121,7 @@ class Sprint < ActiveRecord::Base
         self.update_done_items
         begin
           Sprint.transaction do
+            self.score = Score.calculate(self)
             saved = create_next_sprint and self.save!
           end
         rescue ActiveRecord::RecordInvalid
@@ -135,7 +136,6 @@ class Sprint < ActiveRecord::Base
   protected
   
     def create_next_sprint
-      logger.debug "+++++++++++ avaiable_backlog_points = " + avaiable_backlog_points.to_s
       if self.avaiable_backlog_points - self.real_story_points > 0
         if self.project.backlog.max_sprints == self.project.sprints.length
           # no more sprints permitted
@@ -151,8 +151,8 @@ class Sprint < ActiveRecord::Base
     end
 
     def finish_project
-      self.project.end_date = Time.now
-      self.project.save
+      self.project.sprints << self
+      self.project.finish
     end
 
     def update_done_items

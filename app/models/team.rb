@@ -2,5 +2,5 @@
 class Team < ActiveRecord::Base
   default_scope :order => "name"
   validates_presence_of :name
-  has_many :projects
+  has_many :projects, :order => 'updated_at DESC'
 end
